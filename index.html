@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🐟 Dalio Dashboard</title>
+<style>
+:root {
+  --bg:       #0d1117;
+  --surf:     #161b22;
+  --surf2:    #1c2128;
+  --border:   #30363d;
+  --text:     #e6edf3;
+  --muted:    #8b949e;
+  --green:    #3fb950;
+  --yellow:   #d29922;
+  --red:      #f85149;
+  --blue:     #58a6ff;
+  --purple:   #bc8cff;
+  --orange:   #ffa657;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;padding:0}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--surf);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;position:sticky;top:0;z-index:100}
+.logo{font-size:16px;font-weight:700;letter-spacing:-.3px;white-space:nowrap}
+.logo em{color:var(--blue);font-style:normal}
+.topbar-chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{font-size:11px;font-weight:600;padding:3px 10px;border-radius:12px;border:1px solid;white-space:nowrap}
+.chip-red   {color:var(--red);   border-color:rgba(248,81,73,.4); background:rgba(248,81,73,.1)}
+.chip-green {color:var(--green); border-color:rgba(63,185,80,.4); background:rgba(63,185,80,.1)}
+.chip-blue  {color:var(--blue);  border-color:rgba(88,166,255,.4);background:rgba(88,166,255,.1)}
+.chip-yellow{color:var(--yellow);border-color:rgba(210,153,34,.4);background:rgba(210,153,34,.1)}
+.chip-muted {color:var(--muted); border-color:var(--border);      background:var(--surf2)}
+.chip-purple{color:var(--purple);border-color:rgba(188,140,255,.4);background:rgba(188,140,255,.1)}
+.topbar-right{margin-left:auto;font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--muted)}
+.live-dot.on{background:var(--green);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ── LAYOUT ── */
+.content{padding:20px 20px 40px}
+.section-head{display:flex;align-items:center;gap:8px;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600;margin-bottom:12px;margin-top:28px}
+.section-head:first-of-type{margin-top:0}
+.pill{background:var(--border);border-radius:10px;padding:1px 8px;font-size:11px;color:var(--text);font-weight:700}
+
+/* ── SUMMARY STRIP ── */
+.summary-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:24px}
+.sum-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
+.sum-label{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:4px}
+.sum-val{font-size:20px;font-weight:700}
+.sum-sub{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* Fear/greed meter */
+.fg-meter{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--red),var(--yellow),var(--green));position:relative;margin-top:6px}
+.fg-needle{width:10px;height:12px;background:white;border-radius:2px;position:absolute;top:-3px;transform:translateX(-50%);box-shadow:0 0 5px rgba(0,0,0,.5)}
+
+/* ── POSITION CARDS ── */
+.pos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.pos-card{background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:16px;border-left-width:3px}
+.pos-card.ok{border-left-color:var(--border)}
+.pos-card.warn{border-left-color:var(--yellow)}
+.pos-card.danger{border-left-color:var(--red)}
+
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.card-ticker{font-size:22px;font-weight:800;letter-spacing:-.5px}
+.card-badges{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+
+.pnl-big{font-size:26px;font-weight:800;line-height:1}
+.pnl-big.up{color:var(--green)}.pnl-big.dn{color:var(--red)}.pnl-big.fl{color:var(--yellow)}
+.pnl-sub{font-size:12px;color:var(--muted);margin-top:3px}
+
+/* Range bar */
+.rbar-wrap{margin:14px 0 6px}
+.rbar-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:5px}
+.rbar{height:8px;border-radius:4px;background:var(--border);position:relative;overflow:visible}
+.rbar-grad{position:absolute;inset:0;border-radius:4px;background:linear-gradient(90deg,#f85149 0%,#d29922 35%,#3fb950 100%);opacity:.2}
+
+/* markers */
+.mk{position:absolute;top:50%;transform:translate(-50%,-50%);border-radius:50%}
+.mk-stop  {width:10px;height:10px;background:var(--red);z-index:3}
+.mk-entry {width:7px; height:10px;background:var(--muted);z-index:2;border-radius:2px}
+.mk-hwm   {width:7px; height:10px;background:var(--blue);z-index:2;border-radius:2px}
+.mk-tgt   {width:7px; height:12px;background:var(--green);z-index:2;border-radius:2px}
+.mk-now   {width:12px;height:18px;background:white;z-index:10;border-radius:3px;box-shadow:0 0 8px rgba(0,0,0,.6)}
+
+.rbar-legend{display:flex;gap:10px;font-size:9px;color:var(--muted);margin-top:5px;flex-wrap:wrap}
+.rbar-legend span{display:flex;align-items:center;gap:3px}
+.ldot{width:7px;height:7px;border-radius:50%;display:inline-block}
+
+/* Stats */
+.stats-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
+.stat{text-align:center}
+.stat-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:3px}
+.stat-val{font-size:13px;font-weight:700}
+
+/* Flags */
+.flags{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
+.fl{font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px}
+.fl-r{background:rgba(248,81,73,.15); border:1px solid rgba(248,81,73,.4); color:var(--red)}
+.fl-y{background:rgba(210,153,34,.15);border:1px solid rgba(210,153,34,.4);color:var(--yellow)}
+.fl-g{background:rgba(63,185,80,.15); border:1px solid rgba(63,185,80,.4); color:var(--green)}
+.fl-b{background:rgba(88,166,255,.15);border:1px solid rgba(88,166,255,.4);color:var(--blue)}
+.fl-p{background:rgba(188,140,255,.15);border:1px solid rgba(188,140,255,.4);color:var(--purple)}
+
+/* ── PENDING CARD ── */
+.pending-card{background:var(--surf);border:1px solid rgba(210,153,34,.4);border-left:3px solid var(--yellow);border-radius:10px;padding:16px;margin-bottom:8px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.pend-ticker{font-size:20px;font-weight:800}
+.pend-detail{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;flex:1}
+.pend-stat{font-size:12px}
+.pend-stat .lbl{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.05em}
+
+/* ── TABLES ── */
+.tbl-wrap{background:var(--surf);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:10px 14px;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--surf2);white-space:nowrap}
+td{padding:9px 14px;border-bottom:1px solid rgba(48,54,61,.5);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(255,255,255,.02)}
+
+.conf-row{display:flex;align-items:center;gap:6px}
+.conf-bg{width:55px;height:4px;background:var(--border);border-radius:2px;overflow:hidden;flex-shrink:0}
+.conf-fill{height:100%;border-radius:2px}
+
+.radar-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px}
+.rb-hot {color:var(--red);   background:rgba(248,81,73,.12); border:1px solid rgba(248,81,73,.3)}
+.rb-acc {color:var(--blue);  background:rgba(88,166,255,.1); border:1px solid rgba(88,166,255,.3)}
+.rb-quiet{color:var(--muted);background:var(--surf2);        border:1px solid var(--border)}
+
+/* Loading shimmer */
+@keyframes shimmer{0%{opacity:.4}50%{opacity:.8}100%{opacity:.4}}
+.loading{animation:shimmer 1.5s infinite;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<!-- ── TOP BAR ── -->
+<div class="topbar">
+  <div class="logo">🐟 <em>Dalio</em> Dashboard</div>
+  <div class="topbar-chips" id="topbar-chips">
+    <span class="chip chip-muted loading">Loading…</span>
+  </div>
+  <div class="topbar-right">
+    <div class="live-dot" id="live-dot"></div>
+    <span id="update-lbl">Fetching data…</span>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- ── SUMMARY STRIP ── -->
+  <div class="summary-strip" id="summary-strip">
+    <div class="sum-card"><div class="sum-label">Positions</div><div class="sum-val loading" id="s-pos">—</div><div class="sum-sub" id="s-pos-sub">loading</div></div>
+    <div class="sum-card"><div class="sum-label">Pending</div><div class="sum-val loading" id="s-pend">—</div><div class="sum-sub" id="s-pend-sub">loading</div></div>
+    <div class="sum-card"><div class="sum-label">Portfolio P&L</div><div class="sum-val loading" id="s-pnl">—</div><div class="sum-sub" id="s-pnl-sub">vs entries</div></div>
+    <div class="sum-card" id="fg-card">
+      <div class="sum-label">Fear &amp; Greed</div>
+      <div class="sum-val loading" id="s-fg">—</div>
+      <div class="fg-meter" id="fg-meter" style="display:none"><div class="fg-needle" id="fg-needle"></div></div>
+    </div>
+    <div class="sum-card"><div class="sum-label">RayDar</div><div class="sum-val loading" id="s-radar">—</div><div class="sum-sub" id="s-radar-sub">top signals</div></div>
+    <div class="sum-card"><div class="sum-label">Signals</div><div class="sum-val loading" id="s-sigs">—</div><div class="sum-sub">watchlist</div></div>
+  </div>
+
+  <!-- ── OPEN POSITIONS ── -->
+  <div class="section-head">Open Positions <span class="pill" id="pos-count">…</span></div>
+  <div class="pos-grid" id="pos-grid"><div class="loading" style="padding:20px">Loading positions…</div></div>
+
+  <!-- ── PENDING ORDERS ── -->
+  <div id="pending-section" style="display:none">
+    <div class="section-head">Pending Approval <span class="pill" id="pend-count">…</span></div>
+    <div id="pend-grid"></div>
+  </div>
+
+  <!-- ── SIGNAL WATCHLIST ── -->
+  <div class="section-head">Signal Watchlist <span class="pill" id="sig-count">…</span>
+    <span style="font-size:10px;color:var(--muted);text-transform:none;font-weight:400">· Dalio BUY signals not yet in portfolio</span>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Dalio Conf</th>
+          <th>RayDar</th>
+          <th>Signal Price</th>
+          <th>Live Price</th>
+          <th>Δ vs Signal</th>
+          <th>Last Seen</th>
+          <th>Entry Flags</th>
+        </tr>
+      </thead>
+      <tbody id="sig-tbody"><tr><td colspan="8" class="loading" style="text-align:center;padding:20px">Loading…</td></tr></tbody>
+    </table>
+  </div>
+
+  <!-- ── RAYDAR HOT ── -->
+  <div class="section-head">RayDar Hot Signals <span class="pill" id="radar-count">…</span>
+    <span style="font-size:10px;color:var(--muted);text-transform:none;font-weight:400">· top momentum from hourly scan</span>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Ticker</th>
+          <th>Score</th>
+          <th>Stage</th>
+          <th>Active Signals</th>
+          <th>Live Price</th>
+          <th>Dalio?</th>
+        </tr>
+      </thead>
+      <tbody id="radar-tbody"><tr><td colspan="6" class="loading" style="text-align:center;padding:20px">Loading…</td></tr></tbody>
+    </table>
+  </div>
+
+</div><!-- /content -->
+
+<script>
+// ── HELPERS ──────────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const fmt  = (n,d=2)  => (+n).toFixed(d);
+const pct  = (a,b)    => (a-b)/b*100;
+const days = dateStr  => Math.floor((Date.now() - new Date(dateStr)) / 86400000);
+const bpct = (v,lo,hi) => Math.max(0,Math.min(100,(v-lo)/(hi-lo)*100));
+
+function confColor(c){ return c>=95?'var(--green)':c>=88?'var(--yellow)':'var(--muted)' }
+function confBg(c)   { return c>=95?'rgba(63,185,80,.15)':c>=88?'rgba(210,153,34,.15)':'rgba(139,148,158,.1)' }
+function confBd(c)   { return c>=95?'rgba(63,185,80,.35)':c>=88?'rgba(210,153,34,.35)':'rgba(139,148,158,.3)' }
+
+function stageChip(stage, score) {
+  if (!stage) return '';
+  if (stage === 'hype_expansion')    return `<span class="radar-badge rb-hot">🔥 ${fmt(score,0)}</span>`;
+  if (stage === 'early_accumulation') return `<span class="radar-badge rb-acc">📡 ${fmt(score,0)}</span>`;
+  return `<span class="radar-badge rb-quiet">⚪ ${fmt(score,0)}</span>`;
+}
+
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function render(d) {
+  const positions = d.positions  || {};
+  const pending   = d.pending_orders || {};
+  const signals   = d.signals    || {};
+  const radar     = d.radar      || {};
+  const prices    = d.live_prices || {};
+  const radarMap  = radar.by_ticker || {};
+  const fg        = radar.fear_greed || {};
+
+  const posTickers  = new Set(Object.keys(positions));
+  const pendTickers = new Set(Object.keys(pending));
+
+  // ── Topbar chips ──
+  const ibkr = d.ibkr_online;
+  const chips = [
+    `<span class="chip ${ibkr?'chip-green':'chip-red'}">${ibkr?'● IBKR Live':'● IBKR Offline'}</span>`,
+    fg.value != null ? `<span class="chip chip-muted">😨↔😄 ${fg.value} — ${fg.label}</span>` : '',
+  ].filter(Boolean).join('');
+  $('topbar-chips').innerHTML = chips;
+
+  // ── Summary strip ──
+  const posArr  = Object.entries(positions);
+  const pendArr = Object.entries(pending);
+
+  // Portfolio P&L
+  let totalPnl = 0, pnlKnown = 0;
+  posArr.forEach(([tk, m]) => {
+    const p = prices[tk];
+    if (p && m.entry_price) { totalPnl += pct(p, m.entry_price); pnlKnown++; }
+  });
+
+  $('s-pos').textContent = posArr.length;
+  $('s-pos').classList.remove('loading');
+  $('s-pos-sub').textContent = `${posArr.length} live`;
+
+  $('s-pend').textContent = pendArr.length;
+  $('s-pend').classList.remove('loading');
+  $('s-pend-sub').textContent = pendArr.length ? pendArr.map(([k])=>k).join(', ') : 'none';
+
+  if (pnlKnown) {
+    const avg = totalPnl / pnlKnown;
+    $('s-pnl').textContent = (avg>=0?'+':'') + fmt(avg) + '%';
+    $('s-pnl').style.color = avg>=0?'var(--green)':'var(--red)';
+  } else {
+    $('s-pnl').textContent = 'N/A';
+  }
+  $('s-pnl').classList.remove('loading');
+
+  if (fg.value != null) {
+    $('s-fg').textContent = fg.value;
+    $('s-fg').classList.remove('loading');
+    $('fg-meter').style.display = 'block';
+    $('fg-needle').style.left = fg.value + '%';
+  }
+
+  const hotRadar = (radar.top || []).filter(r => r.stage === 'hype_expansion').length;
+  $('s-radar').textContent = hotRadar;
+  $('s-radar').classList.remove('loading');
+  $('s-radar-sub').textContent = `${(radar.top||[]).length} tracked`;
+
+  const watchSigs = Object.entries(signals).filter(([k,v]) => v.action==='BUY' && !posTickers.has(k));
+  $('s-sigs').textContent = watchSigs.length;
+  $('s-sigs').classList.remove('loading');
+
+  // ── Positions ──
+  $('pos-count').textContent = posArr.length;
+  const posGrid = $('pos-grid');
+  posGrid.innerHTML = '';
+
+  posArr.forEach(([ticker, m]) => {
+    const price     = prices[ticker] ?? m.entry_price;
+    const isLive    = !!prices[ticker];
+    const held      = days(m.entry_date);
+    const left      = (m.max_holding_days || 30) - held;
+    const pnlPct    = pct(price, m.entry_price);
+    const aboveStop = pct(price, m.stop_loss_price);
+    const toTarget  = pct(m.price_target, price);
+    const daysRatio = held / (m.max_holding_days || 30);
+
+    const radar_item = radarMap[ticker];
+    const radarHtml  = radar_item ? stageChip(radar_item.stage, radar_item.radar_score) : '';
+
+    // Range bar
+    const lo = Math.min(m.stop_loss_price, m.entry_price) * 0.96;
+    const hi = Math.max(m.price_target, m.high_water_mark || m.price_target) * 1.03;
+    const bp = v => bpct(v, lo, hi);
+
+    // Exit flags
+    const flags = [];
+    if (left <= 5)        flags.push({t:`⏰ ${left}d left`,c:'fl-r'});
+    else if (left <= 10)  flags.push({t:`⏳ ${left}d left`,c:'fl-y'});
+    if (aboveStop < 3)    flags.push({t:'🚨 Stop near',c:'fl-r'});
+    else if (aboveStop<6) flags.push({t:'⚠️ Watch stop',c:'fl-y'});
+    if (toTarget < 5)     flags.push({t:'🎯 Near target',c:'fl-g'});
+    if (pnlPct < 0)       flags.push({t:'📉 Below entry',c:'fl-r'});
+    if (!isLive)          flags.push({t:'⚡ Last known',c:'fl-b'});
+    if (radar_item?.stage === 'hype_expansion') flags.push({t:'🔥 RayDar hot',c:'fl-p'});
+
+    const cardCls = flags.some(f=>f.c==='fl-r') ? 'danger' : flags.some(f=>f.c==='fl-y') ? 'warn' : 'ok';
+    const pnlCls  = pnlPct>0.5 ? 'up' : pnlPct<-0.5 ? 'dn' : 'fl';
+    const stopCol = aboveStop<4?'var(--red)':aboveStop<7?'var(--yellow)':'var(--green)';
+    const dayCol  = daysRatio>.85?'var(--red)':daysRatio>.65?'var(--yellow)':'var(--green)';
+    const tgtCol  = toTarget<8?'var(--yellow)':'var(--green)';
+
+    const card = document.createElement('div');
+    card.className = `pos-card ${cardCls}`;
+    card.innerHTML = `
+      <div class="card-top">
+        <div class="card-ticker">${ticker}</div>
+        <div class="card-badges">
+          <span class="chip" style="color:${confColor(m.confidence)};background:${confBg(m.confidence)};border-color:${confBd(m.confidence)};font-size:11px">${m.confidence}% conf</span>
+          ${radarHtml}
+        </div>
+      </div>
+      <div class="pnl-big ${pnlCls}">${pnlPct>=0?'+':''}${fmt(pnlPct)}%</div>
+      <div class="pnl-sub">
+        $${fmt(price)} ${isLive?'<span style="color:var(--green);font-size:10px">● live</span>':'<span style="color:var(--muted);font-size:10px">last known</span>'}
+        &nbsp;·&nbsp; entry $${fmt(m.entry_price)}
+        &nbsp;·&nbsp; HWM $${fmt(m.high_water_mark||m.entry_price)}
+      </div>
+
+      <div class="rbar-wrap">
+        <div class="rbar-labels">
+          <span style="color:var(--red)">▼ STOP $${fmt(m.stop_loss_price)}</span>
+          <span style="color:var(--green)">TARGET $${fmt(m.price_target)} ▲</span>
+        </div>
+        <div class="rbar">
+          <div class="rbar-grad"></div>
+          <div class="mk mk-stop"  style="left:${bp(m.stop_loss_price)}%"  title="Stop $${fmt(m.stop_loss_price)}"></div>
+          <div class="mk mk-entry" style="left:${bp(m.entry_price)}%"       title="Entry $${fmt(m.entry_price)}"></div>
+          <div class="mk mk-hwm"   style="left:${bp(m.high_water_mark||m.entry_price)}%" title="HWM $${fmt(m.high_water_mark||m.entry_price)}"></div>
+          <div class="mk mk-tgt"   style="left:${bp(m.price_target)}%"     title="Target $${fmt(m.price_target)}"></div>
+          <div class="mk mk-now"   style="left:${bp(price)}%"              title="Now $${fmt(price)}"></div>
+        </div>
+        <div class="rbar-legend">
+          <span><span class="ldot" style="background:var(--red)"></span>Stop</span>
+          <span><span class="ldot" style="background:var(--muted);border-radius:1px;height:6px"></span>Entry</span>
+          <span><span class="ldot" style="background:var(--blue);border-radius:1px;height:6px"></span>HWM</span>
+          <span><span class="ldot" style="background:white"></span>Now</span>
+          <span><span class="ldot" style="background:var(--green);border-radius:1px;height:6px"></span>Target</span>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-lbl">To Target</div>
+          <div class="stat-val" style="color:${tgtCol}">+${fmt(toTarget)}%</div>
+        </div>
+        <div class="stat">
+          <div class="stat-lbl">Above Stop</div>
+          <div class="stat-val" style="color:${stopCol}">+${fmt(aboveStop)}%</div>
+        </div>
+        <div class="stat">
+          <div class="stat-lbl">Days ${held}/${m.max_holding_days}</div>
+          <div class="stat-val" style="color:${dayCol}">${left}d left</div>
+        </div>
+      </div>
+      ${flags.length?`<div class="flags">${flags.map(f=>`<span class="fl ${f.c}">${f.t}</span>`).join('')}</div>`:''}
+    `;
+    posGrid.appendChild(card);
+  });
+
+  // ── Pending Orders ──
+  const pendSection = $('pending-section');
+  if (pendArr.length) {
+    pendSection.style.display = '';
+    $('pend-count').textContent = pendArr.length;
+    $('pend-grid').innerHTML = '';
+    pendArr.forEach(([ticker, o]) => {
+      const price = prices[ticker];
+      const radar_item = radarMap[ticker];
+      const div = document.createElement('div');
+      div.className = 'pending-card';
+      div.innerHTML = `
+        <div>
+          <div class="pend-ticker">⏳ ${ticker}</div>
+          <div style="font-size:11px;color:var(--yellow);margin-top:2px">Awaiting approval</div>
+          ${radar_item ? stageChip(radar_item.stage, radar_item.radar_score) : ''}
+        </div>
+        <div class="pend-detail">
+          <div class="pend-stat"><div class="lbl">Action</div>${o.action} ${o.shares}sh @ $${fmt(o.price||o.limit_price)}</div>
+          <div class="pend-stat"><div class="lbl">Confidence</div>${o.confidence}%</div>
+          <div class="pend-stat"><div class="lbl">Stop</div>$${fmt(o.stop_loss_price)}</div>
+          <div class="pend-stat"><div class="lbl">Target</div>$${fmt(o.price_target)} (+${fmt(o.price_target_pct*100,1)}%)</div>
+          <div class="pend-stat"><div class="lbl">Max Hold</div>${o.max_holding_days}d</div>
+          <div class="pend-stat"><div class="lbl">Live Price</div>${price?'$'+fmt(price):'—'}</div>
+        </div>
+      `;
+      $('pend-grid').appendChild(div);
+    });
+  } else {
+    pendSection.style.display = 'none';
+  }
+
+  // ── Signal Watchlist ──
+  const watchlist = Object.entries(signals)
+    .filter(([k,v]) => v.action==='BUY' && !posTickers.has(k) && !pendTickers.has(k))
+    .sort((a,b) => (b[1].last_confidence||0) - (a[1].last_confidence||0));
+
+  $('sig-count').textContent = watchlist.length;
+  const sigTbody = $('sig-tbody');
+  sigTbody.innerHTML = '';
+
+  watchlist.forEach(([ticker, s]) => {
+    const age    = days(s.last_reported);
+    const liveP  = prices[ticker];
+    const delta  = liveP ? pct(liveP, s.last_price) : null;
+    const conf   = s.last_confidence || 0;
+    const barW   = Math.round((conf-74)/26*55);
+    const ri     = radarMap[ticker];
+
+    const eflags = [];
+    if (conf>=98 && age<=14) eflags.push({t:'🔥 HOT',c:'fl-r'});
+    else if (conf>=95 && age<=7)  eflags.push({t:'⚡ Fresh',c:'fl-g'});
+    else if (conf>=95 && age<=14) eflags.push({t:'📡 Active',c:'fl-b'});
+    if (age>21) eflags.push({t:`${age}d stale`,c:'fl-b'});
+    if (conf>=99) eflags.push({t:'⭐ Elite',c:'fl-y'});
+    if (ri?.stage==='hype_expansion') eflags.push({t:'🔥 RayDar',c:'fl-p'});
+
+    const priceHtml = liveP
+      ? `<strong>$${fmt(liveP)}</strong>`
+      : `<span style="color:var(--muted)">—</span>`;
+    const deltaHtml = delta!=null
+      ? `<span style="color:${delta>=0?'var(--green)':'var(--red)'}">${delta>=0?'+':''}${fmt(delta)}%</span>`
+      : '—';
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><strong>${ticker}</strong></td>
+      <td>
+        <div class="conf-row">
+          <span style="font-weight:700;color:${confColor(conf)}">${conf}%</span>
+          <div class="conf-bg"><div class="conf-fill" style="width:${barW}px;background:${confColor(conf)}"></div></div>
+        </div>
+      </td>
+      <td>${ri ? stageChip(ri.stage, ri.radar_score) : '<span style="color:var(--muted)">—</span>'}</td>
+      <td>$${fmt(s.last_price)}</td>
+      <td>${priceHtml}</td>
+      <td>${deltaHtml}</td>
+      <td style="color:${age>14?'var(--muted)':'var(--text)'}">
+        ${s.last_reported?.slice(5)||'—'}${age>7?` <span style="font-size:10px;color:var(--muted)">(${age}d)</span>`:''}
+      </td>
+      <td>${eflags.map(f=>`<span class="fl ${f.c}">${f.t}</span>`).join(' ')||'<span style="color:var(--muted)">—</span>'}</td>
+    `;
+    sigTbody.appendChild(tr);
+  });
+
+  // ── RayDar Hot ──
+  const hotTickers = (radar.top||[])
+    .filter(r=>r.stage==='hype_expansion' || r.stage==='early_accumulation')
+    .slice(0,15);
+  $('radar-count').textContent = hotTickers.length;
+  const radarTbody = $('radar-tbody');
+  radarTbody.innerHTML = '';
+
+  hotTickers.forEach(r => {
+    const liveP   = prices[r.ticker];
+    const isDalio = signals[r.ticker]?.action === 'BUY';
+    const inPos   = posTickers.has(r.ticker);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><strong>${r.ticker}</strong></td>
+      <td>
+        <div class="conf-row">
+          <span style="font-weight:700;color:${r.radar_score>62?'var(--red)':r.radar_score>58?'var(--yellow)':'var(--muted)'}">${fmt(r.radar_score,1)}</span>
+          <div class="conf-bg"><div class="conf-fill" style="width:${Math.round((r.radar_score-30)/40*55)}px;background:${r.radar_score>62?'var(--red)':r.radar_score>58?'var(--yellow)':'var(--blue)'}"></div></div>
+        </div>
+      </td>
+      <td>${stageChip(r.stage, r.radar_score)}</td>
+      <td style="font-size:12px;color:var(--muted);max-width:220px">${(r.active_signals||[]).join(' · ')}</td>
+      <td>${liveP?`<strong>$${fmt(liveP)}</strong>`:'<span style="color:var(--muted)">—</span>'}</td>
+      <td>${inPos?'<span class="fl fl-g">✅ Held</span>':isDalio?'<span class="fl fl-b">📋 Signal</span>':'<span style="color:var(--muted)">—</span>'}</td>
+    `;
+    radarTbody.appendChild(tr);
+  });
+
+  // ── Update indicators ──
+  const liveCount = Object.keys(prices).length;
+  const now = new Date();
+  const pt  = now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',timeZone:'America/Los_Angeles'});
+  $('update-lbl').textContent = `${pt} PT · ${liveCount} prices`;
+  if (liveCount>0) { $('live-dot').classList.add('on'); }
+}
+
+// ── FETCH & REFRESH ───────────────────────────────────────────────────────────
+async function fetchAndRender() {
+  try {
+    const resp = await fetch('./data.json', { cache: 'no-store' });
+    const data = await resp.json();
+    render(data);
+  } catch(e) {
+    $('update-lbl').textContent = 'API error — is server running?';
+    console.error(e);
+  }
+  setTimeout(fetchAndRender, 60_000);  // refresh every 60s
+}
+
+fetchAndRender();
+</script>
+</body>
+</html>
