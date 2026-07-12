@@ -231,6 +231,11 @@ const $ = id => document.getElementById(id);
 const fmt  = (n,d=2)  => (+n).toFixed(d);
 const pct  = (a,b)    => (a-b)/b*100;
 const days = dateStr  => Math.floor((Date.now() - new Date(dateStr)) / 86400000);
+function expiryDate(entryDate, maxDays) {
+  const d = new Date(entryDate);
+  d.setDate(d.getDate() + maxDays);
+  return d.toLocaleDateString('en-US', { month:'short', day:'numeric' });
+}
 const bpct = (v,lo,hi) => Math.max(0,Math.min(100,(v-lo)/(hi-lo)*100));
 
 function confColor(c){ return c>=95?'var(--green)':c>=88?'var(--yellow)':'var(--muted)' }
@@ -413,8 +418,13 @@ function render(d) {
           <div class="stat-val" style="color:${stopCol}">+${fmt(aboveStop)}%</div>
         </div>
         <div class="stat">
-          <div class="stat-lbl">Days ${held}/${m.max_holding_days}</div>
+          <div class="stat-lbl">Hold Window</div>
           <div class="stat-val" style="color:${dayCol}">${left}d left</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px">re-eval ${expiryDate(m.entry_date, m.max_holding_days)}</div>
+          <div style="height:3px;background:var(--border);border-radius:2px;margin-top:5px;overflow:hidden">
+            <div style="height:100%;width:${Math.round(daysRatio*100)}%;background:${dayCol};border-radius:2px;transition:width .3s"></div>
+          </div>
+          <div style="font-size:9px;color:var(--muted);margin-top:2px">${held}/${m.max_holding_days}d used</div>
         </div>
       </div>
       ${flags.length?`<div class="flags">${flags.map(f=>`<span class="fl ${f.c}">${f.t}</span>`).join('')}</div>`:''}
