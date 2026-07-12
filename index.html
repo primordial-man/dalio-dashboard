@@ -155,12 +155,12 @@ tr:hover td{background:rgba(255,255,255,.02)}
 
   <!-- ── SUMMARY STRIP ── -->
   <div class="summary-strip" id="summary-strip">
+    <div class="sum-card"><div class="sum-label">Account Value</div><div class="sum-val loading" id="s-netliq">—</div><div class="sum-sub" id="s-netliq-sub">IBKR net liq</div></div>
     <div class="sum-card"><div class="sum-label">Dalio Baseline</div><div class="sum-val" id="s-start" style="color:var(--blue)">$10,000</div><div class="sum-sub">starting capital</div></div>
     <div class="sum-card"><div class="sum-label">Dalio Value</div><div class="sum-val loading" id="s-dalio-val">—</div><div class="sum-sub" id="s-dalio-val-sub">positions only</div></div>
     <div class="sum-card"><div class="sum-label">Dalio P&amp;L</div><div class="sum-val loading" id="s-pnl">—</div><div class="sum-sub" id="s-pnl-sub">vs cost basis</div></div>
     <div class="sum-card"><div class="sum-label">Positions</div><div class="sum-val loading" id="s-pos">—</div><div class="sum-sub" id="s-pos-sub">loading</div></div>
     <div class="sum-card"><div class="sum-label">Pending</div><div class="sum-val loading" id="s-pend">—</div><div class="sum-sub" id="s-pend-sub">loading</div></div>
-    <div class="sum-card"><div class="sum-label">Account Value</div><div class="sum-val loading" id="s-netliq">—</div><div class="sum-sub" id="s-netliq-sub">IBKR net liq</div></div>
     <div class="sum-card" id="fg-card" style="grid-column:span 2;min-width:0">
       <div class="sum-label">Fear &amp; Greed Index</div>
       <div style="display:flex;align-items:center;margin-top:4px;gap:4px">
@@ -368,6 +368,7 @@ function render(d) {
   const posGrid = $('pos-grid');
   posGrid.innerHTML = '';
 
+  posArr.sort((a,b) => (b[1].confidence||0) - (a[1].confidence||0));
   posArr.forEach(([ticker, m]) => {
     const price     = prices[ticker] ?? m.entry_price;
     const isLive    = !!prices[ticker];
