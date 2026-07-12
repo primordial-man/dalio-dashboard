@@ -157,6 +157,8 @@ tr:hover td{background:rgba(255,255,255,.02)}
   <div class="summary-strip" id="summary-strip">
     <div class="sum-card"><div class="sum-label">Positions</div><div class="sum-val loading" id="s-pos">—</div><div class="sum-sub" id="s-pos-sub">loading</div></div>
     <div class="sum-card"><div class="sum-label">Pending</div><div class="sum-val loading" id="s-pend">—</div><div class="sum-sub" id="s-pend-sub">loading</div></div>
+    <div class="sum-card"><div class="sum-label">Starting Balance</div><div class="sum-val" id="s-start">$10,000</div><div class="sum-sub">Dalio baseline</div></div>
+    <div class="sum-card"><div class="sum-label">Account Value</div><div class="sum-val loading" id="s-netliq">—</div><div class="sum-sub" id="s-netliq-sub">loading</div></div>
     <div class="sum-card"><div class="sum-label">Portfolio P&L</div><div class="sum-val loading" id="s-pnl">—</div><div class="sum-sub" id="s-pnl-sub">vs entries</div></div>
     <div class="sum-card" id="fg-card" style="grid-column:span 2;min-width:0">
       <div class="sum-label">Fear &amp; Greed Index</div>
@@ -288,6 +290,24 @@ function render(d) {
   $('s-pend').textContent = pendArr.length;
   $('s-pend').classList.remove('loading');
   $('s-pend-sub').textContent = pendArr.length ? pendArr.map(([k])=>k).join(', ') : 'none';
+
+  const bal = d.balance || {};
+  if (bal.net_liq != null) {
+    const netliq = bal.net_liq;
+    const start  = bal.starting || 10000;
+    const diff   = netliq - start;
+    const diffPct = (diff / start * 100);
+    const col    = netliq >= start ? 'var(--green)' : 'var(--red)';
+    $('s-netliq').textContent = '$' + netliq.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+    $('s-netliq').style.color = col;
+    $('s-netliq').classList.remove('loading');
+    $('s-netliq-sub').innerHTML = `<span style="color:${col}">${diff>=0?'+':''}$${Math.abs(diff).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})} (${diff>=0?'+':''}${diffPct.toFixed(1)}%)</span> · cash $${(bal.cash||0).toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0})}`;
+    $('s-start').style.color = 'var(--muted)';
+  } else {
+    $('s-netliq').textContent = 'N/A';
+    $('s-netliq').classList.remove('loading');
+    $('s-netliq-sub').textContent = 'IBKR offline';
+  }
 
   if (pnlKnown) {
     const avg = totalPnl / pnlKnown;

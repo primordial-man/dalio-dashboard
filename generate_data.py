@@ -63,6 +63,40 @@ def yahoo_prices(tickers):
 
     return prices
 
+DALIO_PYTHON = str(Path.home() / 'Projects/dalio-agent/venv/bin/python3')
+IBKR_SCRIPT  = '''
+import json, asyncio
+try:
+    asyncio.get_event_loop()
+except RuntimeError:
+    asyncio.set_event_loop(asyncio.new_event_loop())
+from ib_insync import IB, util
+util.logToConsole(level=50)
+ib = IB()
+ib.connect("127.0.0.1", 4001, clientId=97, timeout=8)
+tags = ("NetLiquidation", "TotalCashValue", "GrossPositionValue")
+account = {v.tag: float(v.value) for v in ib.accountValues() if v.tag in tags and v.currency == "USD"}
+positions = [{"symbol": p.contract.symbol, "shares": p.position, "avg_cost": p.avgCost} for p in ib.positions()]
+ib.disconnect()
+print(json.dumps({"account": account, "positions": positions}))
+'''
+
+def get_ibkr_balance():
+    """Query live IBKR balance via dalio venv Python. Returns dict or None."""
+    try:
+        import subprocess
+        r = subprocess.run([DALIO_PYTHON, '-c', IBKR_SCRIPT],
+                          capture_output=True, text=True, timeout=20)
+        if r.returncode == 0 and r.stdout.strip():
+            data = json.loads(r.stdout.strip())
+            print('[ibkr] balance fetched live', file=sys.stderr)
+            return data
+        print(f'[ibkr] script error: {r.stderr[:200]}', file=sys.stderr)
+        return None
+    except Exception as e:
+        print(f'[ibkr] offline or error: {e}', file=sys.stderr)
+        return None
+
 def generate():
     positions  = load_json(DALIO_DIR / ".position_metadata.json")
     stop_ids   = load_json(DALIO_DIR / ".stop_order_ids.json")
@@ -82,6 +116,17 @@ def generate():
 
     radar_by_ticker = {item["ticker"]: item for item in (radar_raw.get("tickers") or [])}
 
+    ibkr = get_ibkr_balance()
+    STARTING_BALANCE = float(os.environ.get('LIVE_BALANCE', '10000'))
+    balance = {
+        "starting":    STARTING_BALANCE,
+        "net_liq":     ibkr["account"].get("NetLiquidation")     if ibkr else None,
+        "cash":        ibkr["account"].get("TotalCashValue")     if ibkr else None,
+        "positions_value": ibkr["account"].get("GrossPositionValue") if ibkr else None,
+        "ibkr_live":   ibkr is not None,
+        "ibkr_positions": ibkr["positions"] if ibkr else [],
+    }
+
     data = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "positions":     positions,
@@ -96,7 +141,8 @@ def generate():
         },
         "live_prices":  prices,
         "scheduler":    scheduler,
-        "ibkr_online":  False,
+        "ibkr_online":  ibkr is not None,
+        "balance":      balance,
     }
     return data
 
