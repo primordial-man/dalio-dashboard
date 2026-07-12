@@ -53,8 +53,12 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .sum-sub{font-size:11px;color:var(--muted);margin-top:2px}
 
 /* Fear/greed meter */
-.fg-meter{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--red),var(--yellow),var(--green));position:relative;margin-top:6px}
+.fg-meter{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--red),var(--yellow),var(--green));position:relative;margin-top:8px}
 .fg-needle{width:10px;height:12px;background:white;border-radius:2px;position:absolute;top:-3px;transform:translateX(-50%);box-shadow:0 0 5px rgba(0,0,0,.5)}
+.fg-indicator{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:middle;flex-shrink:0}
+@keyframes pulse-fast{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.85)}}
+@keyframes pulse-med {0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.9)}}
+@keyframes pulse-slow{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(.95)}}
 
 /* ── POSITION CARDS ── */
 .pos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
@@ -154,9 +158,13 @@ tr:hover td{background:rgba(255,255,255,.02)}
     <div class="sum-card"><div class="sum-label">Positions</div><div class="sum-val loading" id="s-pos">—</div><div class="sum-sub" id="s-pos-sub">loading</div></div>
     <div class="sum-card"><div class="sum-label">Pending</div><div class="sum-val loading" id="s-pend">—</div><div class="sum-sub" id="s-pend-sub">loading</div></div>
     <div class="sum-card"><div class="sum-label">Portfolio P&L</div><div class="sum-val loading" id="s-pnl">—</div><div class="sum-sub" id="s-pnl-sub">vs entries</div></div>
-    <div class="sum-card" id="fg-card">
-      <div class="sum-label">Fear &amp; Greed</div>
-      <div class="sum-val loading" id="s-fg">—</div>
+    <div class="sum-card" id="fg-card" style="grid-column:span 2;min-width:0">
+      <div class="sum-label">Fear &amp; Greed Index</div>
+      <div style="display:flex;align-items:center;margin-top:4px;gap:4px">
+        <span class="fg-indicator" id="fg-indicator"></span>
+        <span class="sum-val loading" id="s-fg" style="font-size:28px">—</span>
+        <span id="fg-label-text" style="font-size:13px;font-weight:700;margin-left:4px"></span>
+      </div>
       <div class="fg-meter" id="fg-meter" style="display:none"><div class="fg-needle" id="fg-needle"></div></div>
     </div>
     <div class="sum-card"><div class="sum-label">RayDar</div><div class="sum-val loading" id="s-radar">—</div><div class="sum-sub" id="s-radar-sub">top signals</div></div>
@@ -286,10 +294,25 @@ function render(d) {
   $('s-pnl').classList.remove('loading');
 
   if (fg.value != null) {
-    $('s-fg').textContent = fg.value;
+    const fgv = fg.value;
+    $('s-fg').textContent = fgv;
     $('s-fg').classList.remove('loading');
     $('fg-meter').style.display = 'block';
-    $('fg-needle').style.left = fg.value + '%';
+    $('fg-needle').style.left = fgv + '%';
+    // Color + pulse based on zone
+    let fgColor, fgAnim, fgLbl;
+    if      (fgv <= 25) { fgColor='#f85149'; fgAnim='pulse-fast 0.8s infinite'; fgLbl='Extreme Fear'; }
+    else if (fgv <= 45) { fgColor='#ffa657'; fgAnim='pulse-med 1.2s infinite';  fgLbl='Fear'; }
+    else if (fgv <= 55) { fgColor='#8b949e'; fgAnim='pulse-slow 2s infinite';   fgLbl='Neutral'; }
+    else if (fgv <= 75) { fgColor='#3fb950'; fgAnim='pulse-med 1.2s infinite';  fgLbl='Greed'; }
+    else                { fgColor='#3fb950'; fgAnim='pulse-fast 0.8s infinite'; fgLbl='Extreme Greed'; }
+    const ind = $('fg-indicator');
+    ind.style.background  = fgColor;
+    ind.style.boxShadow   = `0 0 8px ${fgColor}`;
+    ind.style.animation   = fgAnim;
+    $('s-fg').style.color = fgColor;
+    $('fg-label-text').textContent = fgLbl;
+    $('fg-label-text').style.color = fgColor;
   }
 
   const hotRadar = (radar.top || []).filter(r => r.stage === 'hype_expansion').length;
