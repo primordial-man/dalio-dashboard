@@ -155,11 +155,12 @@ tr:hover td{background:rgba(255,255,255,.02)}
 
   <!-- ── SUMMARY STRIP ── -->
   <div class="summary-strip" id="summary-strip">
+    <div class="sum-card"><div class="sum-label">Dalio Baseline</div><div class="sum-val" id="s-start" style="color:var(--blue)">$10,000</div><div class="sum-sub">starting capital</div></div>
+    <div class="sum-card"><div class="sum-label">Dalio Value</div><div class="sum-val loading" id="s-dalio-val">—</div><div class="sum-sub" id="s-dalio-val-sub">positions only</div></div>
+    <div class="sum-card"><div class="sum-label">Dalio P&amp;L</div><div class="sum-val loading" id="s-pnl">—</div><div class="sum-sub" id="s-pnl-sub">vs cost basis</div></div>
     <div class="sum-card"><div class="sum-label">Positions</div><div class="sum-val loading" id="s-pos">—</div><div class="sum-sub" id="s-pos-sub">loading</div></div>
     <div class="sum-card"><div class="sum-label">Pending</div><div class="sum-val loading" id="s-pend">—</div><div class="sum-sub" id="s-pend-sub">loading</div></div>
-    <div class="sum-card"><div class="sum-label">Starting Balance</div><div class="sum-val" id="s-start">$10,000</div><div class="sum-sub">Dalio baseline</div></div>
-    <div class="sum-card"><div class="sum-label">Account Value</div><div class="sum-val loading" id="s-netliq">—</div><div class="sum-sub" id="s-netliq-sub">loading</div></div>
-    <div class="sum-card"><div class="sum-label">Portfolio P&L</div><div class="sum-val loading" id="s-pnl">—</div><div class="sum-sub" id="s-pnl-sub">vs entries</div></div>
+    <div class="sum-card"><div class="sum-label">Account Value</div><div class="sum-val loading" id="s-netliq">—</div><div class="sum-sub" id="s-netliq-sub">IBKR net liq</div></div>
     <div class="sum-card" id="fg-card" style="grid-column:span 2;min-width:0">
       <div class="sum-label">Fear &amp; Greed Index</div>
       <div style="display:flex;align-items:center;margin-top:4px;gap:4px">
@@ -276,12 +277,36 @@ function render(d) {
   const posArr  = Object.entries(positions);
   const pendArr = Object.entries(pending);
 
-  // Portfolio P&L
-  let totalPnl = 0, pnlKnown = 0;
-  posArr.forEach(([tk, m]) => {
-    const p = prices[tk];
-    if (p && m.entry_price) { totalPnl += pct(p, m.entry_price); pnlKnown++; }
+  // ── Dalio-only P&L (cost basis from IBKR, Dalio tickers only) ──
+  const bal        = d.balance || {};
+  const ibkrPosMap = {};
+  (bal.ibkr_positions || []).forEach(p => { ibkrPosMap[p.symbol] = p; });
+
+  let dalioCost = 0, dalioVal = 0, dalioKnown = 0;
+  posArr.forEach(([tk]) => {
+    const ibp   = ibkrPosMap[tk];
+    const liveP = prices[tk];
+    if (ibp) {
+      dalioCost += ibp.shares * ibp.avg_cost;
+      if (liveP) { dalioVal += ibp.shares * liveP; dalioKnown++; }
+    }
   });
+  const dalioPnl    = dalioVal - dalioCost;
+  const dalioPnlPct = dalioCost > 0 ? (dalioPnl / dalioCost * 100) : 0;
+  const pnlCol      = dalioPnl >= 0 ? 'var(--green)' : 'var(--red)';
+
+  if (dalioKnown > 0) {
+    $('s-dalio-val').textContent = '$' + dalioVal.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+    $('s-dalio-val').style.color = dalioVal >= dalioCost ? 'var(--green)' : 'var(--red)';
+    $('s-dalio-val').classList.remove('loading');
+    $('s-dalio-val-sub').textContent = 'cost basis $' + dalioCost.toLocaleString('en-US', {maximumFractionDigits:0});
+    $('s-pnl').textContent = (dalioPnl>=0?'+':'') + '$' + Math.abs(dalioPnl).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+    $('s-pnl').style.color = pnlCol;
+    $('s-pnl').classList.remove('loading');
+    $('s-pnl-sub').innerHTML = `<span style="color:${pnlCol}">${dalioPnlPct>=0?'+':''}${dalioPnlPct.toFixed(2)}%</span> vs cost basis`;
+  } else {
+    ['s-dalio-val','s-pnl'].forEach(id => { $(id).textContent='N/A'; $(id).classList.remove('loading'); });
+  }
 
   $('s-pos').textContent = posArr.length;
   $('s-pos').classList.remove('loading');
@@ -291,32 +316,21 @@ function render(d) {
   $('s-pend').classList.remove('loading');
   $('s-pend-sub').textContent = pendArr.length ? pendArr.map(([k])=>k).join(', ') : 'none';
 
-  const bal = d.balance || {};
+  // ── Overall account (full IBKR net liq) ──
   if (bal.net_liq != null) {
-    const netliq = bal.net_liq;
-    const start  = bal.starting || 10000;
-    const diff   = netliq - start;
-    const diffPct = (diff / start * 100);
-    const col    = netliq >= start ? 'var(--green)' : 'var(--red)';
+    const netliq  = bal.net_liq;
+    const start   = bal.starting || 10000;
+    const diff    = netliq - start;
+    const diffPct = diff / start * 100;
+    const col     = netliq >= start ? 'var(--green)' : 'var(--red)';
     $('s-netliq').textContent = '$' + netliq.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
     $('s-netliq').style.color = col;
     $('s-netliq').classList.remove('loading');
-    $('s-netliq-sub').innerHTML = `<span style="color:${col}">${diff>=0?'+':''}$${Math.abs(diff).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})} (${diff>=0?'+':''}${diffPct.toFixed(1)}%)</span> · cash $${(bal.cash||0).toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0})}`;
-    $('s-start').style.color = 'var(--muted)';
+    $('s-netliq-sub').innerHTML = `<span style="color:${col}">${diff>=0?'+':''}$${Math.abs(diff).toFixed(0)} (${diff>=0?'+':''}${diffPct.toFixed(1)}%)</span> &middot; cash $${(bal.cash||0).toLocaleString('en-US',{maximumFractionDigits:0})}`;
   } else {
-    $('s-netliq').textContent = 'N/A';
-    $('s-netliq').classList.remove('loading');
+    $('s-netliq').textContent = 'N/A'; $('s-netliq').classList.remove('loading');
     $('s-netliq-sub').textContent = 'IBKR offline';
   }
-
-  if (pnlKnown) {
-    const avg = totalPnl / pnlKnown;
-    $('s-pnl').textContent = (avg>=0?'+':'') + fmt(avg) + '%';
-    $('s-pnl').style.color = avg>=0?'var(--green)':'var(--red)';
-  } else {
-    $('s-pnl').textContent = 'N/A';
-  }
-  $('s-pnl').classList.remove('loading');
 
   if (fg.value != null) {
     const fgv = fg.value;
