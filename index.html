@@ -375,7 +375,7 @@ function render(d) {
       <div class="card-top">
         <div class="card-ticker">${ticker}</div>
         <div class="card-badges">
-          <span class="chip" style="color:${confColor(m.confidence)};background:${confBg(m.confidence)};border-color:${confBd(m.confidence)};font-size:11px" title="Thesis conviction score — composite of macro, fundamentals, technicals & sentiment">${m.confidence}% conviction</span>
+          <span class="chip" style="color:${confColor(m.confidence)};background:${confBg(m.confidence)};border-color:${confBd(m.confidence)};font-size:11px">${m.confidence}% conviction</span>
           ${radarHtml}
         </div>
       </div>
@@ -384,9 +384,12 @@ function render(d) {
         $${fmt(price)} ${isLive?'<span style="color:var(--green);font-size:10px">● live</span>':'<span style="color:var(--muted);font-size:10px">last known</span>'}
         &nbsp;·&nbsp; entry $${fmt(m.entry_price)}
       </div>
-      <div style="font-size:11px;color:var(--muted);margin-top:4px;display:flex;gap:10px;flex-wrap:wrap">
-        <span title="High Water Mark — trailing stop locks in at HWM × 92%">🏔 HWM $${fmt(m.high_water_mark||m.entry_price)} <span style="color:${(m.high_water_mark||m.entry_price)>m.entry_price?'var(--green)':'var(--muted)'}">(+${fmt(pct(m.high_water_mark||m.entry_price,m.entry_price))}% from entry)</span></span>
-        <span style="color:${pct(price,m.high_water_mark||m.entry_price)<-5?'var(--yellow)':'var(--muted)'}" title="How far current price sits below the HWM">▼ ${fmt(Math.abs(pct(price,m.high_water_mark||m.entry_price)))}% off peak</span>
+      <div style="font-size:11px;color:var(--muted);margin-top:5px;display:flex;flex-direction:column;gap:3px">
+        <div style="font-size:10px;color:var(--muted);letter-spacing:.03em">Conviction = macro + fundamentals + technicals + sentiment</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:2px">
+          <span>🏔 <strong style="color:var(--text)">HWM</strong> $${fmt(m.high_water_mark||m.entry_price)} &mdash; highest price since entry <span style="color:${(m.high_water_mark||m.entry_price)>m.entry_price?'var(--green)':'var(--muted)'}">(+${fmt(pct(m.high_water_mark||m.entry_price,m.entry_price))}%)</span></span>
+        </div>
+        <div style="color:${pct(price,m.high_water_mark||m.entry_price)<-5?'var(--yellow)':'var(--muted)'}">▼ ${fmt(Math.abs(pct(price,m.high_water_mark||m.entry_price)))}% off HWM &mdash; trailing stop rises as HWM rises (locked at HWM &times; 92%)</div>
       </div>
 
       <div class="rbar-wrap">
