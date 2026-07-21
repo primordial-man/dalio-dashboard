@@ -311,9 +311,9 @@ function render(d) {
   }
 
   // ── Realized P&L (live closed trades from journal) ──
-  const realizedPnl  = (data.journal && data.journal.live_realized_pnl != null) ? data.journal.live_realized_pnl : null;
-  const liveWins     = (data.journal && data.journal.live_wins)    || 0;
-  const liveLosses   = (data.journal && data.journal.live_losses)  || 0;
+  const realizedPnl  = (d.journal && d.journal.live_realized_pnl != null) ? d.journal.live_realized_pnl : null;
+  const liveWins     = (d.journal && d.journal.live_wins)    || 0;
+  const liveLosses   = (d.journal && d.journal.live_losses)  || 0;
   const liveTotal    = liveWins + liveLosses;
   if (realizedPnl != null) {
     const rCol = realizedPnl >= 0 ? 'var(--green)' : 'var(--red)';
@@ -328,7 +328,7 @@ function render(d) {
   }
 
   // ── Total Gain = open unrealized + live realized ──
-  const openPnl   = (ibkrOk && dalioPnl != null) ? dalioPnl : null;
+  const openPnl   = (ibkr && dalioPnl != null) ? dalioPnl : null;
   const totalGain = (openPnl != null && realizedPnl != null) ? openPnl + realizedPnl
                   : openPnl != null ? openPnl
                   : realizedPnl;
