@@ -158,7 +158,9 @@ tr:hover td{background:rgba(255,255,255,.02)}
     <div class="sum-card"><div class="sum-label">Account Value</div><div class="sum-val loading" id="s-netliq">—</div><div class="sum-sub" id="s-netliq-sub">IBKR net liq</div></div>
     <div class="sum-card"><div class="sum-label">Dalio Baseline</div><div class="sum-val" id="s-start" style="color:var(--blue)">$10,000</div><div class="sum-sub">starting capital</div></div>
     <div class="sum-card"><div class="sum-label">Dalio Value</div><div class="sum-val loading" id="s-dalio-val">—</div><div class="sum-sub" id="s-dalio-val-sub">positions only</div></div>
-    <div class="sum-card"><div class="sum-label">Dalio P&amp;L</div><div class="sum-val loading" id="s-pnl">—</div><div class="sum-sub" id="s-pnl-sub">vs cost basis</div></div>
+    <div class="sum-card"><div class="sum-label">Open P&amp;L</div><div class="sum-val loading" id="s-pnl">—</div><div class="sum-sub" id="s-pnl-sub">unrealized, vs cost basis</div></div>
+    <div class="sum-card"><div class="sum-label">Realized P&amp;L</div><div class="sum-val loading" id="s-realized">—</div><div class="sum-sub" id="s-realized-sub">closed trades (live)</div></div>
+    <div class="sum-card" style="border:1px solid rgba(88,166,255,.35)"><div class="sum-label" style="color:var(--blue)">Total Gain</div><div class="sum-val loading" id="s-total-gain">—</div><div class="sum-sub" id="s-total-gain-sub">open + closed</div></div>
     <div class="sum-card"><div class="sum-label">Positions</div><div class="sum-val loading" id="s-pos">—</div><div class="sum-sub" id="s-pos-sub">loading</div></div>
     <div class="sum-card"><div class="sum-label">Pending</div><div class="sum-val loading" id="s-pend">—</div><div class="sum-sub" id="s-pend-sub">loading</div></div>
     <div class="sum-card" id="fg-card" style="grid-column:span 2;min-width:0">
@@ -303,9 +305,43 @@ function render(d) {
     $('s-pnl').textContent = (dalioPnl>=0?'+':'') + '$' + Math.abs(dalioPnl).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
     $('s-pnl').style.color = pnlCol;
     $('s-pnl').classList.remove('loading');
-    $('s-pnl-sub').innerHTML = `<span style="color:${pnlCol}">${dalioPnlPct>=0?'+':''}${dalioPnlPct.toFixed(2)}%</span> vs cost basis`;
+    $('s-pnl-sub').innerHTML = `<span style="color:${pnlCol}">${dalioPnlPct>=0?'+':''}${dalioPnlPct.toFixed(2)}%</span> unrealized`;
   } else {
     ['s-dalio-val','s-pnl'].forEach(id => { $(id).textContent='N/A'; $(id).classList.remove('loading'); });
+  }
+
+  // ── Realized P&L (live closed trades from journal) ──
+  const realizedPnl  = (data.journal && data.journal.live_realized_pnl != null) ? data.journal.live_realized_pnl : null;
+  const liveWins     = (data.journal && data.journal.live_wins)    || 0;
+  const liveLosses   = (data.journal && data.journal.live_losses)  || 0;
+  const liveTotal    = liveWins + liveLosses;
+  if (realizedPnl != null) {
+    const rCol = realizedPnl >= 0 ? 'var(--green)' : 'var(--red)';
+    $('s-realized').textContent = (realizedPnl>=0?'+':'') + '$' + Math.abs(realizedPnl).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+    $('s-realized').style.color = rCol;
+    $('s-realized').classList.remove('loading');
+    $('s-realized-sub').innerHTML = liveTotal > 0
+      ? `<span style="color:var(--green)">${liveWins}W</span> / <span style="color:var(--red)">${liveLosses}L</span> &nbsp;(${liveTotal} live trades)`
+      : 'no live closed trades yet';
+  } else {
+    $('s-realized').textContent = 'N/A'; $('s-realized').classList.remove('loading');
+  }
+
+  // ── Total Gain = open unrealized + live realized ──
+  const openPnl   = (ibkrOk && dalioPnl != null) ? dalioPnl : null;
+  const totalGain = (openPnl != null && realizedPnl != null) ? openPnl + realizedPnl
+                  : openPnl != null ? openPnl
+                  : realizedPnl;
+  if (totalGain != null) {
+    const tCol = totalGain >= 0 ? 'var(--green)' : 'var(--red)';
+    $('s-total-gain').textContent = (totalGain>=0?'+':'') + '$' + Math.abs(totalGain).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+    $('s-total-gain').style.color = tCol;
+    $('s-total-gain').classList.remove('loading');
+    const openPart     = openPnl   != null ? `open ${openPnl>=0?'+':''}$${Math.abs(openPnl).toFixed(0)}`   : 'open N/A';
+    const closedPart   = realizedPnl != null ? ` / closed ${realizedPnl>=0?'+':''}$${Math.abs(realizedPnl).toFixed(0)}` : '';
+    $('s-total-gain-sub').textContent = openPart + closedPart;
+  } else {
+    $('s-total-gain').textContent = 'N/A'; $('s-total-gain').classList.remove('loading');
   }
 
   $('s-pos').textContent = posArr.length;

@@ -97,6 +97,53 @@ def get_ibkr_balance():
         print(f'[ibkr] offline or error: {e}', file=sys.stderr)
         return None
 
+def load_journal(path):
+    """Load .trade_journal.jsonl, return list of entry dicts."""
+    entries = []
+    try:
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if line:
+                    try:
+                        entries.append(json.loads(line))
+                    except json.JSONDecodeError:
+                        pass
+    except Exception:
+        pass
+    return entries
+
+
+def summarise_journal(entries):
+    """Compute realized P&L totals split by trading_mode."""
+    live_pnl = 0.0
+    live_wins = live_losses = 0
+    closed_live = []
+    for e in entries:
+        if e.get("status") != "closed":
+            continue
+        pnl = e.get("realized_pnl") or 0
+        if e.get("trading_mode") == "live":
+            live_pnl += pnl
+            if pnl >= 0:
+                live_wins += 1
+            else:
+                live_losses += 1
+            closed_live.append({
+                "ticker":      e["ticker"],
+                "exit_date":   e.get("exit_date"),
+                "realized_pnl": round(pnl, 2),
+                "realized_pnl_pct": e.get("realized_pnl_pct"),
+                "exit_type":   e.get("exit_type"),
+            })
+    return {
+        "live_realized_pnl":    round(live_pnl, 2),
+        "live_wins":            live_wins,
+        "live_losses":          live_losses,
+        "live_closed_trades":   closed_live,
+    }
+
+
 def generate():
     positions  = load_json(DALIO_DIR / ".position_metadata.json")
     stop_ids   = load_json(DALIO_DIR / ".stop_order_ids.json")
@@ -104,6 +151,7 @@ def generate():
     signals    = load_json(DALIO_DIR / ".signal_history.json")
     radar_raw  = load_json(RADAR_DIR / "radar_watchlist.json", {})
     scheduler  = load_json(DALIO_DIR / ".scheduler_state.json")
+    journal    = summarise_journal(load_journal(DALIO_DIR / ".trade_journal.jsonl"))
 
     all_tickers = list(set(
         list(positions.keys()) +
@@ -143,6 +191,7 @@ def generate():
         "scheduler":    scheduler,
         "ibkr_online":  ibkr is not None,
         "balance":      balance,
+        "journal":      journal,
     }
     return data
 
