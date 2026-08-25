@@ -180,6 +180,14 @@ tr:hover td{background:rgba(255,255,255,.02)}
   <div class="section-head">Open Positions <span class="pill" id="pos-count">…</span></div>
   <div class="pos-grid" id="pos-grid"><div class="loading" style="padding:20px">Loading positions…</div></div>
 
+  <!-- ── UNMANAGED POSITIONS ── -->
+  <div id="unmanaged-section" style="display:none">
+    <div class="section-head">Unmanaged Positions <span class="pill" id="unmanaged-count">…</span>
+      <span style="font-size:10px;color:var(--muted);text-transform:none;font-weight:400">· in IBKR with Dalio signal, but no stop or target set</span>
+    </div>
+    <div class="pos-grid" id="unmanaged-grid"></div>
+  </div>
+
   <!-- ── PENDING ORDERS ── -->
   <div id="pending-section" style="display:none">
     <div class="section-head">Pending Approval <span class="pill" id="pend-count">…</span></div>
@@ -539,6 +547,71 @@ function render(d) {
     });
   } else {
     pendSection.style.display = 'none';
+  }
+
+  // ── Unmanaged Positions ──
+  const unmanagedArr = d.unmanaged_positions || [];
+  const unmanagedSection = $('unmanaged-section');
+  if (unmanagedArr.length) {
+    unmanagedSection.style.display = '';
+    $('unmanaged-count').textContent = unmanagedArr.length;
+    const unmanagedGrid = $('unmanaged-grid');
+    unmanagedGrid.innerHTML = '';
+
+    unmanagedArr.forEach(u => {
+      const liveP    = u.live_price ?? u.avg_cost;
+      const pnlPct   = u.open_pnl_pct ?? 0;
+      const pnlAmt   = u.open_pnl ?? 0;
+      const pnlCls   = pnlPct > 0.5 ? 'up' : pnlPct < -0.5 ? 'dn' : 'fl';
+      const pnlCol   = pnlPct >= 0 ? 'var(--green)' : 'var(--red)';
+      const conf     = u.signal_confidence || 0;
+      const ri       = u.radar || null;
+      const radarHtml = ri ? stageChip(ri.stage, ri.radar_score) : '';
+      const isLive   = u.live_price != null;
+
+      const card = document.createElement('div');
+      card.className = 'pos-card warn';   // always amber border — no stop/target
+      card.innerHTML = `
+        <div class="card-top">
+          <div class="card-ticker">${u.ticker}</div>
+          <div class="card-badges">
+            ${conf ? `<span class="chip" style="color:${confColor(conf)};background:${confBg(conf)};border-color:${confBd(conf)};font-size:11px">${conf}% signal</span>` : ''}
+            ${radarHtml}
+          </div>
+        </div>
+        <div class="pnl-big ${pnlCls}">${pnlPct >= 0 ? '+' : ''}${fmt(pnlPct)}%</div>
+        <div class="pnl-sub">
+          $${fmt(liveP)} ${isLive
+            ? '<span style="color:var(--green);font-size:10px">● live</span>'
+            : '<span style="color:var(--muted);font-size:10px">last known</span>'}
+          &nbsp;·&nbsp; avg cost $${fmt(u.avg_cost)}
+          &nbsp;·&nbsp; ${u.shares}sh
+        </div>
+        <div class="flags" style="margin-top:12px">
+          <span class="fl fl-y">⚠️ No Stop</span>
+          <span class="fl fl-y">⚠️ No Target</span>
+          <span class="fl fl-b">📋 Dalio Signal</span>
+          ${!isLive ? '<span class="fl fl-b">⚡ Last known</span>' : ''}
+        </div>
+        <div class="stats-row" style="margin-top:14px">
+          <div class="stat">
+            <div class="stat-lbl">Shares</div>
+            <div class="stat-val">${u.shares}</div>
+          </div>
+          <div class="stat">
+            <div class="stat-lbl">Open P&amp;L</div>
+            <div class="stat-val" style="color:${pnlCol}">${pnlAmt >= 0 ? '+' : ''}$${fmt(Math.abs(pnlAmt))}</div>
+          </div>
+          <div class="stat">
+            <div class="stat-lbl">Last Signal</div>
+            <div class="stat-val" style="font-size:12px">${u.signal_last_seen?.slice(5) || '—'}</div>
+          </div>
+        </div>
+      `;
+      unmanagedGrid.appendChild(card);
+    });
+  } else {
+    unmanagedSection.style.display = 'none';
   }
 
   // ── Signal Watchlist ──

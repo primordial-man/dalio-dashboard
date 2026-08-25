@@ -175,12 +175,41 @@ def generate():
         "ibkr_positions": ibkr["positions"] if ibkr else [],
     }
 
+    # Unmanaged positions: IBKR longs with an active Dalio BUY signal
+    # but no position_metadata entry (e.g. approved order that never filled,
+    # or pre-existing shares in a signalled ticker).
+    # Excludes any ticker already in position_metadata or pending_orders.
+    ibkr_pos_map   = {p["symbol"]: p for p in (ibkr["positions"] if ibkr else [])}
+    dalio_signal_tickers = {k for k, v in signals.items() if v.get("action") == "BUY"}
+    unmanaged_positions = []
+    for sym, ibkr_p in ibkr_pos_map.items():
+        if sym in positions:          continue  # already managed
+        if sym in pending:            continue  # pending approval
+        if ibkr_p["shares"] <= 0:    continue  # short or zero
+        if sym not in dalio_signal_tickers: continue  # no Dalio signal
+        sig = signals[sym]
+        live_p = prices.get(sym)
+        avg    = ibkr_p["avg_cost"]
+        unmanaged_positions.append({
+            "ticker":        sym,
+            "shares":        ibkr_p["shares"],
+            "avg_cost":      avg,
+            "market_value":  round(ibkr_p["shares"] * (live_p or avg), 2),
+            "live_price":    live_p,
+            "open_pnl":      round((live_p - avg) * ibkr_p["shares"], 2) if live_p else None,
+            "open_pnl_pct":  round((live_p - avg) / avg * 100, 2)        if live_p else None,
+            "signal_confidence": sig.get("last_confidence"),
+            "signal_last_seen":  sig.get("last_reported"),
+            "radar":         radar_by_ticker.get(sym),
+        })
+
     data = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "positions":     positions,
         "stop_ids":      stop_ids,
         "pending_orders": pending,
         "signals":       signals,
+        "unmanaged_positions": unmanaged_positions,
         "radar": {
             "generated_at": radar_raw.get("generated_at"),
             "fear_greed":   radar_raw.get("fear_greed", {}),
