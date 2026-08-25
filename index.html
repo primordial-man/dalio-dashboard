@@ -416,6 +416,9 @@ function render(d) {
   posArr.forEach(([ticker, m]) => {
     const price     = prices[ticker] ?? m.entry_price;
     const isLive    = !!prices[ticker];
+    const ibp       = ibkrPosMap[ticker];
+    const shares    = ibp?.shares ?? null;
+    const mktVal    = (shares != null) ? shares * price : null;
     const held      = days(m.entry_date);
     const left      = (m.max_holding_days || 30) - held;
     const pnlPct    = pct(price, m.entry_price);
@@ -463,6 +466,10 @@ function render(d) {
         $${fmt(price)} ${isLive?'<span style="color:var(--green);font-size:10px">● live</span>':'<span style="color:var(--muted);font-size:10px">last known</span>'}
         &nbsp;·&nbsp; entry $${fmt(m.entry_price)}
       </div>
+      ${shares != null ? `<div style="display:flex;gap:20px;margin-top:10px;margin-bottom:2px">
+        <span><span style="color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em">Shares&nbsp;</span><strong style="font-size:16px">${shares}</strong></span>
+        <span><span style="color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.06em">Value&nbsp;</span><strong style="font-size:16px;color:var(--blue)">$${mktVal.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</strong></span>
+      </div>` : ''}
       <div style="font-size:11px;color:var(--muted);margin-top:5px;display:flex;flex-direction:column;gap:3px">
         <div style="font-size:10px;color:var(--muted);letter-spacing:.03em">Conviction = macro + fundamentals + technicals + sentiment</div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:2px">
