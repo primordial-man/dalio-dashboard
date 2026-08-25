@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25T04:05:02.273955+00:00",
+  "generated_at": "2026-08-25T04:13:27.764474+00:00",
   "positions": {
     "CRM": {
       "entry_date": "2026-07-17",
@@ -11,10 +11,46 @@
       "exit_notes": "Take profit at $236.89 (+20%); trailing stop 8% below HWM; hard stop $181.61; re-evaluate after 45d if neither hit",
       "trailing_stop_pct": 0.08,
       "high_water_mark": 210.35
+    },
+    "GDX": {
+      "entry_date": "2026-08-24",
+      "entry_price": 103.48,
+      "price_target": 119.0,
+      "stop_loss_price": 95.2,
+      "max_holding_days": 45,
+      "confidence": 78,
+      "exit_notes": "Protective stop added 2026-08-24; trailing 8% below HWM. Target +15% from entry ($119.0). Pre-Dalio position.",
+      "trailing_stop_pct": 0.08,
+      "high_water_mark": 103.48
+    },
+    "XLV": {
+      "entry_date": "2026-08-24",
+      "entry_price": 161.04,
+      "price_target": 185.2,
+      "stop_loss_price": 160.72,
+      "max_holding_days": 60,
+      "confidence": 80,
+      "exit_notes": "Protective stop added 2026-08-24; trailing 8% below HWM. Target +15% from entry ($185.2). Pre-Dalio position.",
+      "trailing_stop_pct": 0.08,
+      "high_water_mark": 174.7
+    },
+    "EWT": {
+      "entry_date": "2026-08-24",
+      "entry_price": 108.53,
+      "price_target": 124.81,
+      "stop_loss_price": 95.06,
+      "max_holding_days": 45,
+      "confidence": 75,
+      "exit_notes": "Protective stop added 2026-08-24; trailing 8% below HWM. Target +15% from entry ($124.81). Pre-Dalio position.",
+      "trailing_stop_pct": 0.08,
+      "high_water_mark": 103.33
     }
   },
   "stop_ids": {
-    "CRM": 224
+    "CRM": 224,
+    "GDX": 226,
+    "XLV": 232,
+    "EWT": 234
   },
   "pending_orders": {},
   "signals": {
@@ -323,44 +359,7 @@
       "last_price": 103.1500015258789
     }
   },
-  "unmanaged_positions": [
-    {
-      "ticker": "GDX",
-      "shares": 6.0,
-      "avg_cost": 103.48166965,
-      "market_value": 621.24,
-      "live_price": 103.54,
-      "open_pnl": 0.35,
-      "open_pnl_pct": 0.06,
-      "signal_confidence": 78,
-      "signal_last_seen": "2026-08-24",
-      "radar": null
-    },
-    {
-      "ticker": "XLV",
-      "shares": 6.0,
-      "avg_cost": 161.03666665,
-      "market_value": 1048.2,
-      "live_price": 174.7,
-      "open_pnl": 81.98,
-      "open_pnl_pct": 8.48,
-      "signal_confidence": 80,
-      "signal_last_seen": "2026-08-24",
-      "radar": null
-    },
-    {
-      "ticker": "EWT",
-      "shares": 4.0,
-      "avg_cost": 108.525,
-      "market_value": 413.32,
-      "live_price": 103.33,
-      "open_pnl": -20.78,
-      "open_pnl_pct": -4.79,
-      "signal_confidence": 75,
-      "signal_last_seen": "2026-08-17",
-      "radar": null
-    }
-  ],
+  "unmanaged_positions": [],
   "radar": {
     "generated_at": "2026-08-24T20:32:43.200373",
     "fear_greed": {
@@ -2500,44 +2499,44 @@
     ]
   },
   "live_prices": {
-    "AVGO": 358.76,
-    "OR": 37.49,
-    "AMAT": 484.19,
-    "AAPL": 310.34,
-    "CRM": 209.06,
-    "LLY": 1246.93,
-    "PDBC": 18.47,
-    "PLTR": 175.89,
-    "MU": 910.43,
-    "XLF": 58.22,
-    "GDX": 103.54,
-    "GTLB": 42.03,
-    "NFLX": 80.01,
-    "ADI": 371.17,
-    "QQQ": 706.32,
-    "META": 559.02,
-    "XLV": 174.7,
-    "GL": 173.13,
-    "UBER": 79.29,
-    "GRPN": 19.63,
-    "WDC": 435.38,
-    "LRCX": 310.17,
     "USO": 132.21,
     "EWY": 173.64,
-    "JPM": 356.39,
-    "EWT": 103.33,
-    "XLK": 180.05,
-    "ORCL": 142.45,
-    "STX": 794.65,
-    "CLOV": 4.11,
-    "TXN": 258.94,
-    "ADBE": 276.27,
     "NVDA": 208.48,
+    "ADBE": 276.27,
+    "LLY": 1246.93,
+    "NFLX": 80.01,
     "AMC": 2.67,
-    "XLE": 63.11,
+    "GDX": 103.54,
     "FCF": 20.96,
+    "WEN": 8.84,
+    "CRM": 209.06,
+    "ORCL": 142.45,
+    "GL": 173.13,
+    "META": 559.02,
+    "AMAT": 484.19,
+    "AVGO": 358.76,
+    "XLK": 180.05,
+    "EWT": 103.33,
+    "PDBC": 18.47,
+    "XLF": 58.22,
+    "CLOV": 4.11,
+    "STX": 794.65,
+    "QQQ": 706.32,
+    "ADI": 371.17,
+    "LRCX": 310.17,
+    "MU": 910.43,
+    "XLV": 174.7,
     "DELL": 433.19,
-    "WEN": 8.84
+    "OR": 37.49,
+    "GTLB": 42.03,
+    "WDC": 435.38,
+    "XLE": 63.11,
+    "AAPL": 310.34,
+    "TXN": 258.94,
+    "UBER": 79.29,
+    "GRPN": 19.63,
+    "PLTR": 175.89,
+    "JPM": 356.39
   },
   "scheduler": {
     "2026-08-19": {
@@ -2562,9 +2561,9 @@
   "ibkr_online": true,
   "balance": {
     "starting": 10000.0,
-    "net_liq": 16476.85,
+    "net_liq": 16476.79,
     "cash": 8658.88,
-    "positions_value": 11758.33,
+    "positions_value": 11758.27,
     "ibkr_live": true,
     "ibkr_positions": [
       {
