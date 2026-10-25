@@ -122,8 +122,16 @@ def summarise_journal(entries):
     for e in entries:
         if e.get("status") != "closed":
             continue
+        # 2026-10-25: journal rows written since Jul 8 (all October closes, manual closes) carry no
+        # trading_mode, so the old 'mode == live' test silently dropped them from Realized P&L.
+        # Treat a row as live if mode is 'live', or mode is missing AND it closed after live go-live (2026-06-08).
+        # Rows with no realized_pnl (never closed / unknown) cannot be counted. Paper rows stay excluded.
+        if e.get("realized_pnl") is None:
+            continue
         pnl = e.get("realized_pnl") or 0
-        if e.get("trading_mode") == "live":
+        _mode = e.get("trading_mode")
+        _is_live = _mode == "live" or (_mode is None and (e.get("exit_date") or "") >= "2026-06-08")
+        if _is_live:
             live_pnl += pnl
             if pnl >= 0:
                 live_wins += 1
