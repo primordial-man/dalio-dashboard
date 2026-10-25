@@ -310,7 +310,7 @@ function render(d) {
     $('s-dalio-val').style.color = dalioVal >= dalioCost ? 'var(--green)' : 'var(--red)';
     $('s-dalio-val').classList.remove('loading');
     $('s-dalio-val-sub').textContent = 'cost basis $' + dalioCost.toLocaleString('en-US', {maximumFractionDigits:0});
-    $('s-pnl').textContent = (dalioPnl>=0?'+':'') + '$' + Math.abs(dalioPnl).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+    $('s-pnl').textContent = (dalioPnl>=0?'+':'-') + '$' + Math.abs(dalioPnl).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
     $('s-pnl').style.color = pnlCol;
     $('s-pnl').classList.remove('loading');
     $('s-pnl-sub').innerHTML = `<span style="color:${pnlCol}">${dalioPnlPct>=0?'+':''}${dalioPnlPct.toFixed(2)}%</span> unrealized`;
@@ -325,7 +325,7 @@ function render(d) {
   const liveTotal    = liveWins + liveLosses;
   if (realizedPnl != null) {
     const rCol = realizedPnl >= 0 ? 'var(--green)' : 'var(--red)';
-    $('s-realized').textContent = (realizedPnl>=0?'+':'') + '$' + Math.abs(realizedPnl).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+    $('s-realized').textContent = (realizedPnl>=0?'+':'-') + '$' + Math.abs(realizedPnl).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
     $('s-realized').style.color = rCol;
     $('s-realized').classList.remove('loading');
     $('s-realized-sub').innerHTML = liveTotal > 0
@@ -342,11 +342,11 @@ function render(d) {
                   : realizedPnl;
   if (totalGain != null) {
     const tCol = totalGain >= 0 ? 'var(--green)' : 'var(--red)';
-    $('s-total-gain').textContent = (totalGain>=0?'+':'') + '$' + Math.abs(totalGain).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+    $('s-total-gain').textContent = (totalGain>=0?'+':'-') + '$' + Math.abs(totalGain).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
     $('s-total-gain').style.color = tCol;
     $('s-total-gain').classList.remove('loading');
-    const openPart     = openPnl   != null ? `open ${openPnl>=0?'+':''}$${Math.abs(openPnl).toFixed(0)}`   : 'open N/A';
-    const closedPart   = realizedPnl != null ? ` / closed ${realizedPnl>=0?'+':''}$${Math.abs(realizedPnl).toFixed(0)}` : '';
+    const openPart     = openPnl   != null ? `open ${openPnl>=0?'+':'-'}$${Math.abs(openPnl).toFixed(0)}`   : 'open N/A';
+    const closedPart   = realizedPnl != null ? ` / closed ${realizedPnl>=0?'+':'-'}$${Math.abs(realizedPnl).toFixed(0)}` : '';
     $('s-total-gain-sub').textContent = openPart + closedPart;
   } else {
     $('s-total-gain').textContent = 'N/A'; $('s-total-gain').classList.remove('loading');
