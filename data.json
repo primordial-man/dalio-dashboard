@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-11T14:00:08.153595+00:00",
+  "generated_at": "2026-11-11T15:00:12.801275+00:00",
   "positions": {
     "XLP": {
       "entry_date": "2026-10-16",
@@ -76,7 +76,29 @@
     "REGN": 581,
     "AMC": 589
   },
-  "pending_orders": {},
+  "pending_orders": {
+    "TXN": {
+      "ticker": "TXN",
+      "action": "BUY",
+      "confidence": 89,
+      "price": 311.58,
+      "order_type": "LMT",
+      "shares": 3,
+      "position_dollars": 934.74,
+      "stop_loss_price": 286.65,
+      "price_target": 371.65,
+      "price_target_pct": 0.1928,
+      "max_holding_days": 36,
+      "exit_notes": "Take profit at $371.65 (+19%); trailing stop 10% below HWM; hard stop $286.65; re-evaluate after 36d if neither hit",
+      "trailing_stop_pct": 0.1,
+      "entry_date": "2026-11-11",
+      "queued_at": "2026-11-11T06:31:16.726591",
+      "auto_execute_at": null,
+      "status": "pending",
+      "paper_mode": false,
+      "retry_count": 0
+    }
+  },
   "signals": {
     "META": {
       "action": "BUY",
@@ -89,10 +111,10 @@
     "TXN": {
       "action": "BUY",
       "first_reported": "2026-05-15",
-      "last_reported": "2026-11-04",
+      "last_reported": "2026-11-11",
       "first_confidence": 89,
       "last_confidence": 89,
-      "last_price": 315.18
+      "last_price": 311.58
     },
     "XLE": {
       "action": "BUY",
@@ -465,10 +487,10 @@
     "REGN": {
       "action": "BUY",
       "first_reported": "2026-11-02",
-      "last_reported": "2026-11-10",
+      "last_reported": "2026-11-11",
       "first_confidence": 81,
       "last_confidence": 91,
-      "last_price": 911.17
+      "last_price": 902.32
     },
     "DUOL": {
       "action": "BUY",
@@ -521,44 +543,26 @@
   },
   "unmanaged_positions": [],
   "radar": {
-    "generated_at": "2026-11-11T05:48:57.551618",
+    "generated_at": "2026-11-11T06:49:06.793985",
     "fear_greed": {
-      "value": 36.6,
+      "value": 37.7,
       "label": "fear",
       "multiplier": 1.1
     },
     "by_ticker": {
-      "WMT": {
-        "ticker": "WMT",
-        "radar_score": 77.0,
-        "stage": "hype_expansion",
-        "z_score": 1.67,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 186\u219291, +300% mentions)",
-          "\ud83d\udd0d Google Trends (+329% vs 30d baseline)"
-        ],
-        "components": {
-          "reddit_velocity": 100,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 100,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
       "SLS": {
         "ticker": "SLS",
-        "radar_score": 76.57,
+        "radar_score": 75.38,
         "stage": "hype_expansion",
-        "z_score": 1.06,
+        "z_score": 0.93,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 167\u219256, +800% mentions)",
-          "\ud83d\udd0d Google Trends (+95% vs 30d baseline)"
+          "\ud83d\udce3 Reddit (rank 163\u219252, +900% mentions)",
+          "\ud83d\udd0d Google Trends (+80% vs 30d baseline)"
         ],
         "components": {
           "reddit_velocity": 100,
           "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 97.4,
+          "google_trend_accel": 90.23,
           "relative_volume": 50.0,
           "options_flow": 50.0,
           "insider_activity": 50.0
@@ -570,7 +574,7 @@
         "stage": "hype_expansion",
         "z_score": 1.8,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 136\u219224, +525% mentions)",
+          "\ud83d\udce3 Reddit (rank 134\u219224, +575% mentions)",
           "\ud83d\udd0d Google Trends (+36% vs 30d baseline)"
         ],
         "components": {
@@ -582,52 +586,18 @@
           "insider_activity": 50.0
         }
       },
-      "LOVE": {
-        "ticker": "LOVE",
-        "radar_score": 69.61,
+      "NU": {
+        "ticker": "NU",
+        "radar_score": 69.68,
         "stage": "hype_expansion",
-        "z_score": -0.02,
+        "z_score": 0.92,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 131\u219275, +200% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 100.0,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 55.23,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "MS": {
-        "ticker": "MS",
-        "radar_score": 69.1,
-        "stage": "hype_expansion",
-        "z_score": 0.95,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 264\u219239, +1300% mentions)"
+          "\ud83d\udce3 Reddit (rank 609\u219297, +300% mentions)"
         ],
         "components": {
           "reddit_velocity": 100,
           "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 52.15,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "GM": {
-        "ticker": "GM",
-        "radar_score": 68.76,
-        "stage": "hype_expansion",
-        "z_score": 0.71,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 222\u219294, +300% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 100,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.07,
+          "google_trend_accel": 55.68,
           "relative_volume": 50.0,
           "options_flow": 50.0,
           "insider_activity": 50.0
@@ -635,11 +605,96 @@
       },
       "WEN": {
         "ticker": "WEN",
+        "radar_score": 69.12,
+        "stage": "hype_expansion",
+        "z_score": 0.26,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 276\u219263, +600% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 100,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 52.26,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "MS": {
+        "ticker": "MS",
+        "radar_score": 68.99,
+        "stage": "hype_expansion",
+        "z_score": 0.94,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 262\u219237, +1300% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 100,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 51.45,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "FM": {
+        "ticker": "FM",
+        "radar_score": 68.89,
+        "stage": "hype_expansion",
+        "z_score": 1.28,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 430\u219281, +400% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 100,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.85,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "EVER": {
+        "ticker": "EVER",
+        "radar_score": 68.86,
+        "stage": "hype_expansion",
+        "z_score": -0.11,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 529\u219284, +400% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 100,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.66,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "COST": {
+        "ticker": "COST",
+        "radar_score": 68.78,
+        "stage": "hype_expansion",
+        "z_score": 0.82,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 191\u219268, +500% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 100,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.19,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "MVST": {
+        "ticker": "MVST",
         "radar_score": 68.75,
         "stage": "hype_expansion",
-        "z_score": 0.22,
+        "z_score": -0.55,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 278\u219265, +600% mentions)"
+          "\ud83d\udce3 Reddit (rank 568\u219285, +400% mentions)"
         ],
         "components": {
           "reddit_velocity": 100,
@@ -654,26 +709,9 @@
         "ticker": "RGTI",
         "radar_score": 68.75,
         "stage": "hype_expansion",
-        "z_score": 0.63,
+        "z_score": 0.61,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 629\u219257, +800% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 100,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "MVST": {
-        "ticker": "MVST",
-        "radar_score": 68.75,
-        "stage": "hype_expansion",
-        "z_score": -0.56,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 570\u219288, +400% mentions)"
+          "\ud83d\udce3 Reddit (rank 627\u219260, +700% mentions)"
         ],
         "components": {
           "reddit_velocity": 100,
@@ -688,9 +726,9 @@
         "ticker": "PEPG",
         "radar_score": 68.75,
         "stage": "hype_expansion",
-        "z_score": 0.0,
+        "z_score": 3.75,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 664\u219290, +400% mentions)"
+          "\ud83d\udce3 Reddit (rank 664\u219299, +300% mentions)"
         ],
         "components": {
           "reddit_velocity": 100,
@@ -701,81 +739,30 @@
           "insider_activity": 50.0
         }
       },
-      "WH": {
-        "ticker": "WH",
-        "radar_score": 68.75,
-        "stage": "hype_expansion",
-        "z_score": 0.78,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 273\u219296, +300% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 100,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "GO": {
-        "ticker": "GO",
-        "radar_score": 68.75,
-        "stage": "hype_expansion",
-        "z_score": 0.66,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 347\u219272, +500% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 100,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "EVER": {
-        "ticker": "EVER",
-        "radar_score": 68.75,
-        "stage": "hype_expansion",
-        "z_score": -0.12,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 531\u219287, +400% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 100,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "GEV": {
-        "ticker": "GEV",
-        "radar_score": 68.75,
-        "stage": "hype_expansion",
-        "z_score": 0.52,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 693\u219234, +750% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 100,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "FM": {
-        "ticker": "FM",
+      "VC": {
+        "ticker": "VC",
         "radar_score": 68.75,
         "stage": "hype_expansion",
         "z_score": 1.18,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 433\u219285, +400% mentions)"
+          "\ud83d\udce3 Reddit (rank 150\u219247, +400% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 100,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "MA": {
+        "ticker": "MA",
+        "radar_score": 68.75,
+        "stage": "hype_expansion",
+        "z_score": 1.68,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 185\u219288, +300% mentions)"
         ],
         "components": {
           "reddit_velocity": 100,
@@ -788,16 +775,33 @@
       },
       "WAY": {
         "ticker": "WAY",
-        "radar_score": 68.65,
+        "radar_score": 68.67,
         "stage": "hype_expansion",
         "z_score": 0.23,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 688\u219282, +500% mentions)"
+          "\ud83d\udce3 Reddit (rank 686\u219278, +500% mentions)"
         ],
         "components": {
           "reddit_velocity": 100,
           "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 49.41,
+          "google_trend_accel": 49.51,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "GM": {
+        "ticker": "GM",
+        "radar_score": 68.66,
+        "stage": "hype_expansion",
+        "z_score": 0.7,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 220\u219290, +300% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 100,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 49.45,
           "relative_volume": 50.0,
           "options_flow": 50.0,
           "insider_activity": 50.0
@@ -805,50 +809,16 @@
       },
       "PUMP": {
         "ticker": "PUMP",
-        "radar_score": 68.61,
+        "radar_score": 68.62,
         "stage": "hype_expansion",
         "z_score": -0.04,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 132\u219246, +300% mentions)"
+          "\ud83d\udce3 Reddit (rank 132\u219244, +500% mentions)"
         ],
         "components": {
           "reddit_velocity": 100,
           "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 49.15,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "VC": {
-        "ticker": "VC",
-        "radar_score": 68.49,
-        "stage": "hype_expansion",
-        "z_score": 1.16,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 152\u219249, +400% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 100,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 48.39,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "ARR": {
-        "ticker": "ARR",
-        "radar_score": 67.57,
-        "stage": "hype_expansion",
-        "z_score": 0.78,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 137\u219277, +200% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 100.0,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 42.86,
+          "google_trend_accel": 49.17,
           "relative_volume": 50.0,
           "options_flow": 50.0,
           "insider_activity": 50.0
@@ -856,33 +826,16 @@
       },
       "CRWV": {
         "ticker": "CRWV",
-        "radar_score": 66.83,
+        "radar_score": 68.2,
         "stage": "hype_expansion",
-        "z_score": 1.55,
+        "z_score": 1.66,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 45\u21922, +2506% mentions)"
+          "\ud83d\udce3 Reddit (rank 50\u21922, +2556% mentions)"
         ],
         "components": {
-          "reddit_velocity": 93.0,
+          "reddit_velocity": 98.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "APLD": {
-        "ticker": "APLD",
-        "radar_score": 64.92,
-        "stage": "hype_expansion",
-        "z_score": 0.82,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 635\u219278, +200% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 100.0,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 26.79,
           "relative_volume": 50.0,
           "options_flow": 50.0,
           "insider_activity": 50.0
@@ -890,14 +843,14 @@
       },
       "PTLO": {
         "ticker": "PTLO",
-        "radar_score": 64.62,
+        "radar_score": 65.45,
         "stage": "hype_expansion",
-        "z_score": 1.38,
+        "z_score": 1.42,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 96\u219261, +300% mentions)"
+          "\ud83d\udce3 Reddit (rank 96\u219258, +300% mentions)"
         ],
         "components": {
-          "reddit_velocity": 85.0,
+          "reddit_velocity": 88.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -905,13 +858,47 @@
           "insider_activity": 50.0
         }
       },
-      "ORCL": {
-        "ticker": "ORCL",
+      "GO": {
+        "ticker": "GO",
+        "radar_score": 65.32,
+        "stage": "hype_expansion",
+        "z_score": 0.31,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 344\u219280, +150% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 87.5,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "LOVE": {
+        "ticker": "LOVE",
+        "radar_score": 64.77,
+        "stage": "hype_expansion",
+        "z_score": -0.8,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 131\u219283, +150% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 85.5,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "ASML": {
+        "ticker": "ASML",
         "radar_score": 63.25,
         "stage": "hype_expansion",
-        "z_score": 0.79,
+        "z_score": 0.98,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 67\u219237, +200% mentions)"
+          "\ud83d\udce3 Reddit (rank 121\u219291, +300% mentions)"
         ],
         "components": {
           "reddit_velocity": 80.0,
@@ -922,33 +909,16 @@
           "insider_activity": 50.0
         }
       },
-      "FCF": {
-        "ticker": "FCF",
-        "radar_score": 63.02,
+      "OR": {
+        "ticker": "OR",
+        "radar_score": 62.15,
         "stage": "hype_expansion",
-        "z_score": 1.29,
+        "z_score": 0.45,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 95\u219242, +117% mentions)"
+          "\ud83d\udce3 Reddit (rank 91\u219265, +250% mentions)"
         ],
         "components": {
-          "reddit_velocity": 79.17,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "AGI": {
-        "ticker": "AGI",
-        "radar_score": 62.65,
-        "stage": "hype_expansion",
-        "z_score": 1.17,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 91\u219232, +111% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 77.78,
+          "reddit_velocity": 76.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -962,7 +932,7 @@
         "stage": "hype_expansion",
         "z_score": 0.34,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 153\u219297, +100% mentions)"
+          "\ud83d\udce3 Reddit (rank 151\u219292, +100% mentions)"
         ],
         "components": {
           "reddit_velocity": 75.0,
@@ -973,13 +943,13 @@
           "insider_activity": 50.0
         }
       },
-      "BP": {
-        "ticker": "BP",
+      "ARR": {
+        "ticker": "ARR",
         "radar_score": 61.88,
         "stage": "hype_expansion",
-        "z_score": -0.31,
+        "z_score": 0.38,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 198\u219293, +100% mentions)"
+          "\ud83d\udce3 Reddit (rank 135\u219272, +100% mentions)"
         ],
         "components": {
           "reddit_velocity": 75.0,
@@ -990,16 +960,16 @@
           "insider_activity": 50.0
         }
       },
-      "SE": {
-        "ticker": "SE",
-        "radar_score": 61.88,
+      "AGI": {
+        "ticker": "AGI",
+        "radar_score": 61.82,
         "stage": "hype_expansion",
-        "z_score": -2.87,
+        "z_score": 1.1,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 160\u219299, +100% mentions)"
+          "\ud83d\udce3 Reddit (rank 78\u219231, +111% mentions)"
         ],
         "components": {
-          "reddit_velocity": 75.0,
+          "reddit_velocity": 74.78,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1007,16 +977,16 @@
           "insider_activity": 50.0
         }
       },
-      "COST": {
-        "ticker": "COST",
-        "radar_score": 61.88,
+      "ORCL": {
+        "ticker": "ORCL",
+        "radar_score": 61.6,
         "stage": "hype_expansion",
-        "z_score": 0.12,
+        "z_score": 0.69,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 191\u219284, +100% mentions)"
+          "\ud83d\udce3 Reddit (rank 65\u219236, +180% mentions)"
         ],
         "components": {
-          "reddit_velocity": 75.0,
+          "reddit_velocity": 74.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1024,16 +994,16 @@
           "insider_activity": 50.0
         }
       },
-      "LINK": {
-        "ticker": "LINK",
-        "radar_score": 58.58,
-        "stage": "early_accumulation",
-        "z_score": 0.61,
+      "API": {
+        "ticker": "API",
+        "radar_score": 61.47,
+        "stage": "hype_expansion",
+        "z_score": 0.93,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 111\u219263, +60% mentions)"
+          "\ud83d\udce3 Reddit (rank 71\u219235, +150% mentions)"
         ],
         "components": {
-          "reddit_velocity": 63.0,
+          "reddit_velocity": 73.5,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1041,16 +1011,16 @@
           "insider_activity": 50.0
         }
       },
-      "SPCX": {
-        "ticker": "SPCX",
-        "radar_score": 58.3,
-        "stage": "early_accumulation",
-        "z_score": 1.83,
+      "GEV": {
+        "ticker": "GEV",
+        "radar_score": 60.9,
+        "stage": "hype_expansion",
+        "z_score": -0.07,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 21\u21929, +204% mentions)"
+          "\ud83d\udce3 Reddit (rank 691\u219241, +86% mentions)"
         ],
         "components": {
-          "reddit_velocity": 62.0,
+          "reddit_velocity": 71.43,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1058,16 +1028,50 @@
           "insider_activity": 50.0
         }
       },
-      "MSFT": {
-        "ticker": "MSFT",
-        "radar_score": 57.48,
+      "PS": {
+        "ticker": "PS",
+        "radar_score": 58.92,
         "stage": "early_accumulation",
-        "z_score": 1.69,
+        "z_score": -0.05,
         "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
+          "\ud83d\udce3 Reddit (rank 87\u219254, +125% mentions)"
         ],
         "components": {
-          "reddit_velocity": 59.0,
+          "reddit_velocity": 64.25,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "LUNR": {
+        "ticker": "LUNR",
+        "radar_score": 58.03,
+        "stage": "early_accumulation",
+        "z_score": -0.95,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 136\u2192100, +100% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 61.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "FCF": {
+        "ticker": "FCF",
+        "radar_score": 58.03,
+        "stage": "early_accumulation",
+        "z_score": 0.82,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 81\u219245, +100% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 61.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1092,16 +1096,16 @@
           "insider_activity": 50.0
         }
       },
-      "PS": {
-        "ticker": "PS",
-        "radar_score": 56.1,
+      "MSFT": {
+        "ticker": "MSFT",
+        "radar_score": 57.48,
         "stage": "early_accumulation",
-        "z_score": -0.3,
+        "z_score": 1.69,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 54.0,
+          "reddit_velocity": 59.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1109,11 +1113,28 @@
           "insider_activity": 50.0
         }
       },
-      "API": {
-        "ticker": "API",
+      "APLD": {
+        "ticker": "APLD",
+        "radar_score": 57.29,
+        "stage": "early_accumulation",
+        "z_score": 0.28,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": 58.33,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "NYT": {
+        "ticker": "NYT",
         "radar_score": 54.03,
         "stage": "early_accumulation",
-        "z_score": 0.37,
+        "z_score": -0.25,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
@@ -1126,16 +1147,33 @@
           "insider_activity": 50.0
         }
       },
-      "FOR": {
-        "ticker": "FOR",
-        "radar_score": 53.63,
+      "TSM": {
+        "ticker": "TSM",
+        "radar_score": 54.02,
         "stage": "early_accumulation",
-        "z_score": -0.54,
+        "z_score": 0.29,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 45.0,
+          "reddit_velocity": 46.43,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "SPCX": {
+        "ticker": "SPCX",
+        "radar_score": 53.1,
+        "stage": "early_accumulation",
+        "z_score": 1.01,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": 43.06,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1145,14 +1183,14 @@
       },
       "ON": {
         "ticker": "ON",
-        "radar_score": 52.8,
+        "radar_score": 53.01,
         "stage": "early_accumulation",
-        "z_score": -0.08,
+        "z_score": -0.06,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 42.0,
+          "reddit_velocity": 42.75,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1160,16 +1198,16 @@
           "insider_activity": 50.0
         }
       },
-      "OR": {
-        "ticker": "OR",
-        "radar_score": 52.73,
+      "HBM": {
+        "ticker": "HBM",
+        "radar_score": 52.34,
         "stage": "early_accumulation",
-        "z_score": -0.28,
+        "z_score": -0.12,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 41.75,
+          "reddit_velocity": 40.33,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1177,101 +1215,16 @@
           "insider_activity": 50.0
         }
       },
-      "TSM": {
-        "ticker": "TSM",
-        "radar_score": 52.22,
+      "LINK": {
+        "ticker": "LINK",
+        "radar_score": 51.7,
         "stage": "early_accumulation",
-        "z_score": 0.15,
+        "z_score": 0.05,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 39.86,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "NYT": {
-        "ticker": "NYT",
-        "radar_score": 50.47,
-        "stage": "early_accumulation",
-        "z_score": -0.49,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": 33.5,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "NOW": {
-        "ticker": "NOW",
-        "radar_score": 49.6,
-        "stage": "early_accumulation",
-        "z_score": 0.16,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": 30.36,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "SOXS": {
-        "ticker": "SOXS",
-        "radar_score": 49.42,
-        "stage": "early_accumulation",
-        "z_score": -0.52,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": 29.71,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "IWM": {
-        "ticker": "IWM",
-        "radar_score": 48.13,
-        "stage": "early_accumulation",
-        "z_score": -0.46,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": 25.0,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "RR": {
-        "ticker": "RR",
-        "radar_score": 47.85,
-        "stage": "early_accumulation",
-        "z_score": -0.29,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": 24.0,
+          "reddit_velocity": 38.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1281,14 +1234,31 @@
       },
       "MCD": {
         "ticker": "MCD",
-        "radar_score": 47.85,
+        "radar_score": 48.95,
         "stage": "early_accumulation",
-        "z_score": -0.62,
+        "z_score": -0.52,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 24.0,
+          "reddit_velocity": 28.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "SOXS": {
+        "ticker": "SOXS",
+        "radar_score": 48.87,
+        "stage": "early_accumulation",
+        "z_score": -0.56,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": 27.71,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1298,14 +1268,14 @@
       },
       "BE": {
         "ticker": "BE",
-        "radar_score": 47.72,
+        "radar_score": 48.82,
         "stage": "early_accumulation",
-        "z_score": -0.07,
+        "z_score": 0.01,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 23.5,
+          "reddit_velocity": 27.5,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1313,16 +1283,33 @@
           "insider_activity": 50.0
         }
       },
-      "AM": {
-        "ticker": "AM",
-        "radar_score": 46.93,
+      "FOR": {
+        "ticker": "FOR",
+        "radar_score": 47.58,
         "stage": "early_accumulation",
-        "z_score": -0.04,
+        "z_score": -1.01,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 20.62,
+          "reddit_velocity": 23.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "SMH": {
+        "ticker": "SMH",
+        "radar_score": 47.03,
+        "stage": "early_accumulation",
+        "z_score": -0.32,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": 21.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1332,99 +1319,14 @@
       },
       "AVGO": {
         "ticker": "AVGO",
-        "radar_score": 46.06,
+        "radar_score": 46.75,
         "stage": "early_accumulation",
-        "z_score": -0.16,
+        "z_score": -0.09,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 17.46,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "ASML": {
-        "ticker": "ASML",
-        "radar_score": 45.93,
-        "stage": "early_accumulation",
-        "z_score": -0.3,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": 17.0,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "GLD": {
-        "ticker": "GLD",
-        "radar_score": 45.8,
-        "stage": "early_accumulation",
-        "z_score": -0.72,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": 16.56,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "IT": {
-        "ticker": "IT",
-        "radar_score": 45.6,
-        "stage": "early_accumulation",
-        "z_score": -0.03,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": 15.81,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "SOXL": {
-        "ticker": "SOXL",
-        "radar_score": 45.47,
-        "stage": "early_accumulation",
-        "z_score": -0.23,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": 15.36,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "IQ": {
-        "ticker": "IQ",
-        "radar_score": 45.32,
-        "stage": "early_accumulation",
-        "z_score": -0.26,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": 14.82,
+          "reddit_velocity": 20.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1434,14 +1336,14 @@
       },
       "RDDT": {
         "ticker": "RDDT",
-        "radar_score": 45.31,
+        "radar_score": 46.41,
         "stage": "early_accumulation",
-        "z_score": -0.2,
+        "z_score": -0.08,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 14.77,
+          "reddit_velocity": 18.77,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1449,16 +1351,16 @@
           "insider_activity": 50.0
         }
       },
-      "TTWO": {
-        "ticker": "TTWO",
-        "radar_score": 45.2,
+      "SOXL": {
+        "ticker": "SOXL",
+        "radar_score": 46.12,
         "stage": "early_accumulation",
-        "z_score": -1.04,
+        "z_score": -0.16,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 14.38,
+          "reddit_velocity": 17.72,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1468,14 +1370,65 @@
       },
       "NVDA": {
         "ticker": "NVDA",
-        "radar_score": 44.65,
+        "radar_score": 45.58,
         "stage": "early_accumulation",
-        "z_score": -0.25,
+        "z_score": -0.1,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 12.37,
+          "reddit_velocity": 15.74,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "DC": {
+        "ticker": "DC",
+        "radar_score": 45.38,
+        "stage": "early_accumulation",
+        "z_score": -0.52,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": 15.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "NOW": {
+        "ticker": "NOW",
+        "radar_score": 45.38,
+        "stage": "early_accumulation",
+        "z_score": -0.18,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": 15.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "RR": {
+        "ticker": "RR",
+        "radar_score": 45.1,
+        "stage": "early_accumulation",
+        "z_score": -0.51,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": 14.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1485,14 +1438,14 @@
       },
       "MRNA": {
         "ticker": "MRNA",
-        "radar_score": 44.07,
+        "radar_score": 44.89,
         "stage": "early_accumulation",
-        "z_score": -0.67,
+        "z_score": -0.6,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 10.25,
+          "reddit_velocity": 13.25,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1500,11 +1453,62 @@
           "insider_activity": 50.0
         }
       },
-      "UP": {
-        "ticker": "UP",
+      "IT": {
+        "ticker": "IT",
+        "radar_score": 44.66,
+        "stage": "early_accumulation",
+        "z_score": -0.14,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": 12.41,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "HTZ": {
+        "ticker": "HTZ",
+        "radar_score": 44.28,
+        "stage": "early_accumulation",
+        "z_score": -0.86,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": 11.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "INTC": {
+        "ticker": "INTC",
+        "radar_score": 44.28,
+        "stage": "early_accumulation",
+        "z_score": -0.32,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": 11.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "MSTR": {
+        "ticker": "MSTR",
         "radar_score": 43.67,
         "stage": "early_accumulation",
-        "z_score": -0.57,
+        "z_score": -0.68,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
@@ -1517,16 +1521,16 @@
           "insider_activity": 50.0
         }
       },
-      "YOU": {
-        "ticker": "YOU",
-        "radar_score": 43.55,
+      "AM": {
+        "ticker": "AM",
+        "radar_score": 43.36,
         "stage": "early_accumulation",
-        "z_score": -0.28,
+        "z_score": -0.36,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 8.38,
+          "reddit_velocity": 7.69,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1534,16 +1538,16 @@
           "insider_activity": 50.0
         }
       },
-      "AAPL": {
-        "ticker": "AAPL",
-        "radar_score": 43.31,
+      "AMD": {
+        "ticker": "AMD",
+        "radar_score": 42.87,
         "stage": "early_accumulation",
-        "z_score": -0.54,
+        "z_score": -0.55,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 7.49,
+          "reddit_velocity": 5.88,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1553,14 +1557,14 @@
       },
       "MU": {
         "ticker": "MU",
-        "radar_score": 42.81,
+        "radar_score": 42.78,
         "stage": "early_accumulation",
         "z_score": -0.59,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 5.69,
+          "reddit_velocity": 5.58,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1568,28 +1572,11 @@
           "insider_activity": 50.0
         }
       },
-      "HTZ": {
-        "ticker": "HTZ",
-        "radar_score": 42.78,
-        "stage": "early_accumulation",
-        "z_score": -0.97,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": 5.57,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "OG": {
-        "ticker": "OG",
+      "GLD": {
+        "ticker": "GLD",
         "radar_score": 42.62,
         "stage": "early_accumulation",
-        "z_score": -1.33,
+        "z_score": -0.94,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
@@ -1602,16 +1589,16 @@
           "insider_activity": 50.0
         }
       },
-      "AMD": {
-        "ticker": "AMD",
-        "radar_score": 42.49,
+      "YOU": {
+        "ticker": "YOU",
+        "radar_score": 42.35,
         "stage": "early_accumulation",
-        "z_score": -0.6,
+        "z_score": -0.4,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 4.53,
+          "reddit_velocity": 4.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1619,28 +1606,11 @@
           "insider_activity": 50.0
         }
       },
-      "ET": {
-        "ticker": "ET",
-        "radar_score": 42.12,
-        "stage": "early_accumulation",
-        "z_score": -0.46,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": 3.17,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "DC": {
-        "ticker": "DC",
+      "OMH": {
+        "ticker": "OMH",
         "radar_score": 42.08,
         "stage": "early_accumulation",
-        "z_score": -0.77,
+        "z_score": -1.58,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
@@ -1653,50 +1623,16 @@
           "insider_activity": 50.0
         }
       },
-      "SMA": {
-        "ticker": "SMA",
-        "radar_score": 41.53,
+      "SMCI": {
+        "ticker": "SMCI",
+        "radar_score": 41.75,
         "stage": "early_accumulation",
-        "z_score": -1.53,
+        "z_score": -0.84,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 1.0,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "OMH": {
-        "ticker": "OMH",
-        "radar_score": 41.53,
-        "stage": "early_accumulation",
-        "z_score": -1.71,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": 1.0,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "SMH": {
-        "ticker": "SMH",
-        "radar_score": 41.53,
-        "stage": "early_accumulation",
-        "z_score": -0.72,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": 1.0,
+          "reddit_velocity": 1.78,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1706,14 +1642,14 @@
       },
       "GOOG": {
         "ticker": "GOOG",
-        "radar_score": 41.41,
+        "radar_score": 41.62,
         "stage": "early_accumulation",
-        "z_score": -0.74,
+        "z_score": -0.71,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 0.61,
+          "reddit_velocity": 1.34,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1721,16 +1657,16 @@
           "insider_activity": 50.0
         }
       },
-      "ALL": {
-        "ticker": "ALL",
+      "VOO": {
+        "ticker": "VOO",
         "radar_score": 41.34,
         "stage": "early_accumulation",
-        "z_score": -0.66,
+        "z_score": -0.65,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": 0.33,
+          "reddit_velocity": 0.32,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1738,28 +1674,11 @@
           "insider_activity": 50.0
         }
       },
-      "INTC": {
-        "ticker": "INTC",
+      "AAPL": {
+        "ticker": "AAPL",
         "radar_score": 41.25,
         "stage": "early_accumulation",
-        "z_score": -0.61,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": 0.0,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "META": {
-        "ticker": "META",
-        "radar_score": 41.25,
-        "stage": "early_accumulation",
-        "z_score": -0.59,
+        "z_score": -0.79,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
@@ -1774,14 +1693,14 @@
       },
       "QQQ": {
         "ticker": "QQQ",
-        "radar_score": 41.18,
+        "radar_score": 41.12,
         "stage": "early_accumulation",
-        "z_score": -0.94,
+        "z_score": -0.95,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": -0.23,
+          "reddit_velocity": -0.49,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1789,16 +1708,16 @@
           "insider_activity": 50.0
         }
       },
-      "VOO": {
-        "ticker": "VOO",
-        "radar_score": 41.06,
+      "TTWO": {
+        "ticker": "TTWO",
+        "radar_score": 40.98,
         "stage": "early_accumulation",
-        "z_score": -0.69,
+        "z_score": -1.37,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": -0.68,
+          "reddit_velocity": -1.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1816,6 +1735,74 @@
         ],
         "components": {
           "reddit_velocity": -1.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "ALL": {
+        "ticker": "ALL",
+        "radar_score": 40.98,
+        "stage": "early_accumulation",
+        "z_score": -0.69,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": -1.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "IQ": {
+        "ticker": "IQ",
+        "radar_score": 40.7,
+        "stage": "early_accumulation",
+        "z_score": -0.68,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": -2.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "IWM": {
+        "ticker": "IWM",
+        "radar_score": 40.7,
+        "stage": "early_accumulation",
+        "z_score": -1.0,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": -2.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "ET": {
+        "ticker": "ET",
+        "radar_score": 40.43,
+        "stage": "early_accumulation",
+        "z_score": -0.58,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": -3.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1857,8 +1844,8 @@
           "insider_activity": 50.0
         }
       },
-      "TSLA": {
-        "ticker": "TSLA",
+      "UP": {
+        "ticker": "UP",
         "radar_score": 40.15,
         "stage": "early_accumulation",
         "z_score": -0.83,
@@ -1874,11 +1861,113 @@
           "insider_activity": 50.0
         }
       },
-      "MSTR": {
-        "ticker": "MSTR",
+      "LOT": {
+        "ticker": "LOT",
+        "radar_score": 40.15,
+        "stage": "early_accumulation",
+        "z_score": -0.77,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": -4.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "TSLA": {
+        "ticker": "TSLA",
+        "radar_score": 39.88,
+        "stage": "quiet",
+        "z_score": -0.86,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": -5.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "GOOGL": {
+        "ticker": "GOOGL",
+        "radar_score": 39.88,
+        "stage": "quiet",
+        "z_score": -0.95,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": -5.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "SMA": {
+        "ticker": "SMA",
+        "radar_score": 39.88,
+        "stage": "quiet",
+        "z_score": -1.66,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": -5.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "OG": {
+        "ticker": "OG",
+        "radar_score": 39.88,
+        "stage": "quiet",
+        "z_score": -1.53,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": -5.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "NFLX": {
+        "ticker": "NFLX",
+        "radar_score": 39.64,
+        "stage": "quiet",
+        "z_score": -0.63,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": -5.83,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "SNDK": {
+        "ticker": "SNDK",
         "radar_score": 39.6,
         "stage": "quiet",
-        "z_score": -1.01,
+        "z_score": -0.96,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
@@ -1891,67 +1980,16 @@
           "insider_activity": 50.0
         }
       },
-      "GOOGL": {
-        "ticker": "GOOGL",
+      "META": {
+        "ticker": "META",
         "radar_score": 39.33,
         "stage": "quiet",
-        "z_score": -1.02,
+        "z_score": -0.79,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
           "reddit_velocity": -7.0,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "SNDK": {
-        "ticker": "SNDK",
-        "radar_score": 39.33,
-        "stage": "quiet",
-        "z_score": -1.0,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": -7.0,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "SMCI": {
-        "ticker": "SMCI",
-        "radar_score": 39.05,
-        "stage": "quiet",
-        "z_score": -1.01,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": -8.0,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "LOT": {
-        "ticker": "LOT",
-        "radar_score": 39.05,
-        "stage": "quiet",
-        "z_score": -0.85,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": -8.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1961,14 +1999,31 @@
       },
       "AMZN": {
         "ticker": "AMZN",
-        "radar_score": 38.78,
+        "radar_score": 39.05,
         "stage": "quiet",
-        "z_score": -1.09,
+        "z_score": -1.05,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": -9.0,
+          "reddit_velocity": -8.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "RTX": {
+        "ticker": "RTX",
+        "radar_score": 38.45,
+        "stage": "quiet",
+        "z_score": -1.53,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": -10.22,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -1993,11 +2048,11 @@
           "insider_activity": 50.0
         }
       },
-      "GME": {
-        "ticker": "GME",
+      "TQQQ": {
+        "ticker": "TQQQ",
         "radar_score": 38.23,
         "stage": "quiet",
-        "z_score": -0.9,
+        "z_score": -1.19,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
@@ -2010,84 +2065,16 @@
           "insider_activity": 50.0
         }
       },
-      "RTX": {
-        "ticker": "RTX",
-        "radar_score": 37.68,
-        "stage": "quiet",
-        "z_score": -1.6,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": -13.0,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "TQQQ": {
-        "ticker": "TQQQ",
-        "radar_score": 36.85,
-        "stage": "quiet",
-        "z_score": -1.3,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": -16.0,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "CC": {
-        "ticker": "CC",
-        "radar_score": 36.58,
-        "stage": "quiet",
-        "z_score": -1.4,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": -17.0,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
       "PR": {
         "ticker": "PR",
-        "radar_score": 36.58,
+        "radar_score": 37.4,
         "stage": "quiet",
-        "z_score": -1.21,
+        "z_score": -1.15,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": -17.0,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      "NFLX": {
-        "ticker": "NFLX",
-        "radar_score": 36.03,
-        "stage": "quiet",
-        "z_score": -0.89,
-        "active_signals": [
-          "\u26aa No strong individual signal \u2014 composite score only"
-        ],
-        "components": {
-          "reddit_velocity": -19.0,
+          "reddit_velocity": -14.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -2097,14 +2084,14 @@
       },
       "MRVL": {
         "ticker": "MRVL",
-        "radar_score": 36.03,
+        "radar_score": 36.58,
         "stage": "quiet",
-        "z_score": -1.1,
+        "z_score": -1.05,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": -19.0,
+          "reddit_velocity": -17.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -2114,9 +2101,60 @@
       },
       "NNN": {
         "ticker": "NNN",
+        "radar_score": 36.58,
+        "stage": "quiet",
+        "z_score": -1.46,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": -17.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "GME": {
+        "ticker": "GME",
+        "radar_score": 36.58,
+        "stage": "quiet",
+        "z_score": -1.02,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": -17.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "BB": {
+        "ticker": "BB",
+        "radar_score": 36.3,
+        "stage": "quiet",
+        "z_score": -1.52,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": -18.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "CC": {
+        "ticker": "CC",
         "radar_score": 34.93,
         "stage": "quiet",
-        "z_score": -1.57,
+        "z_score": -1.52,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
@@ -2131,14 +2169,14 @@
       },
       "ES": {
         "ticker": "ES",
-        "radar_score": 34.1,
+        "radar_score": 34.38,
         "stage": "quiet",
-        "z_score": -1.28,
+        "z_score": -1.26,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": -26.0,
+          "reddit_velocity": -25.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -2148,14 +2186,14 @@
       },
       "CIA": {
         "ticker": "CIA",
-        "radar_score": 33.28,
+        "radar_score": 33.83,
         "stage": "quiet",
-        "z_score": -1.77,
+        "z_score": -1.71,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": -29.0,
+          "reddit_velocity": -27.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -2163,16 +2201,16 @@
           "insider_activity": 50.0
         }
       },
-      "IBKR": {
-        "ticker": "IBKR",
-        "radar_score": 33.0,
+      "AMC": {
+        "ticker": "AMC",
+        "radar_score": 31.35,
         "stage": "quiet",
-        "z_score": -1.55,
+        "z_score": -4.01,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": -30.0,
+          "reddit_velocity": -36.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -2182,14 +2220,31 @@
       },
       "HIMS": {
         "ticker": "HIMS",
-        "radar_score": 31.9,
+        "radar_score": 31.35,
         "stage": "quiet",
-        "z_score": -2.09,
+        "z_score": -2.04,
         "active_signals": [
           "\u26aa No strong individual signal \u2014 composite score only"
         ],
         "components": {
-          "reddit_velocity": -34.0,
+          "reddit_velocity": -36.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      "DJT": {
+        "ticker": "DJT",
+        "radar_score": 31.35,
+        "stage": "quiet",
+        "z_score": -1.87,
+        "active_signals": [
+          "\u26aa No strong individual signal \u2014 composite score only"
+        ],
+        "components": {
+          "reddit_velocity": -36.0,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -2200,36 +2255,18 @@
     },
     "top": [
       {
-        "ticker": "WMT",
-        "radar_score": 77.0,
-        "stage": "hype_expansion",
-        "z_score": 1.67,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 186\u219291, +300% mentions)",
-          "\ud83d\udd0d Google Trends (+329% vs 30d baseline)"
-        ],
-        "components": {
-          "reddit_velocity": 100,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 100,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      {
         "ticker": "SLS",
-        "radar_score": 76.57,
+        "radar_score": 75.38,
         "stage": "hype_expansion",
-        "z_score": 1.06,
+        "z_score": 0.93,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 167\u219256, +800% mentions)",
-          "\ud83d\udd0d Google Trends (+95% vs 30d baseline)"
+          "\ud83d\udce3 Reddit (rank 163\u219252, +900% mentions)",
+          "\ud83d\udd0d Google Trends (+80% vs 30d baseline)"
         ],
         "components": {
           "reddit_velocity": 100,
           "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 97.4,
+          "google_trend_accel": 90.23,
           "relative_volume": 50.0,
           "options_flow": 50.0,
           "insider_activity": 50.0
@@ -2241,7 +2278,7 @@
         "stage": "hype_expansion",
         "z_score": 1.8,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 136\u219224, +525% mentions)",
+          "\ud83d\udce3 Reddit (rank 134\u219224, +575% mentions)",
           "\ud83d\udd0d Google Trends (+36% vs 30d baseline)"
         ],
         "components": {
@@ -2254,51 +2291,17 @@
         }
       },
       {
-        "ticker": "LOVE",
-        "radar_score": 69.61,
+        "ticker": "NU",
+        "radar_score": 69.68,
         "stage": "hype_expansion",
-        "z_score": -0.02,
+        "z_score": 0.92,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 131\u219275, +200% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 100.0,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 55.23,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      {
-        "ticker": "MS",
-        "radar_score": 69.1,
-        "stage": "hype_expansion",
-        "z_score": 0.95,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 264\u219239, +1300% mentions)"
+          "\ud83d\udce3 Reddit (rank 609\u219297, +300% mentions)"
         ],
         "components": {
           "reddit_velocity": 100,
           "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 52.15,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      {
-        "ticker": "GM",
-        "radar_score": 68.76,
-        "stage": "hype_expansion",
-        "z_score": 0.71,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 222\u219294, +300% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 100,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.07,
+          "google_trend_accel": 55.68,
           "relative_volume": 50.0,
           "options_flow": 50.0,
           "insider_activity": 50.0
@@ -2306,11 +2309,96 @@
       },
       {
         "ticker": "WEN",
+        "radar_score": 69.12,
+        "stage": "hype_expansion",
+        "z_score": 0.26,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 276\u219263, +600% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 100,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 52.26,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      {
+        "ticker": "MS",
+        "radar_score": 68.99,
+        "stage": "hype_expansion",
+        "z_score": 0.94,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 262\u219237, +1300% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 100,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 51.45,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      {
+        "ticker": "FM",
+        "radar_score": 68.89,
+        "stage": "hype_expansion",
+        "z_score": 1.28,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 430\u219281, +400% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 100,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.85,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      {
+        "ticker": "EVER",
+        "radar_score": 68.86,
+        "stage": "hype_expansion",
+        "z_score": -0.11,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 529\u219284, +400% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 100,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.66,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      {
+        "ticker": "COST",
+        "radar_score": 68.78,
+        "stage": "hype_expansion",
+        "z_score": 0.82,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 191\u219268, +500% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 100,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.19,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      {
+        "ticker": "MVST",
         "radar_score": 68.75,
         "stage": "hype_expansion",
-        "z_score": 0.22,
+        "z_score": -0.55,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 278\u219265, +600% mentions)"
+          "\ud83d\udce3 Reddit (rank 568\u219285, +400% mentions)"
         ],
         "components": {
           "reddit_velocity": 100,
@@ -2325,26 +2413,9 @@
         "ticker": "RGTI",
         "radar_score": 68.75,
         "stage": "hype_expansion",
-        "z_score": 0.63,
+        "z_score": 0.61,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 629\u219257, +800% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 100,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      {
-        "ticker": "MVST",
-        "radar_score": 68.75,
-        "stage": "hype_expansion",
-        "z_score": -0.56,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 570\u219288, +400% mentions)"
+          "\ud83d\udce3 Reddit (rank 627\u219260, +700% mentions)"
         ],
         "components": {
           "reddit_velocity": 100,
@@ -2359,9 +2430,9 @@
         "ticker": "PEPG",
         "radar_score": 68.75,
         "stage": "hype_expansion",
-        "z_score": 0.0,
+        "z_score": 3.75,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 664\u219290, +400% mentions)"
+          "\ud83d\udce3 Reddit (rank 664\u219299, +300% mentions)"
         ],
         "components": {
           "reddit_velocity": 100,
@@ -2373,80 +2444,29 @@
         }
       },
       {
-        "ticker": "WH",
-        "radar_score": 68.75,
-        "stage": "hype_expansion",
-        "z_score": 0.78,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 273\u219296, +300% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 100,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      {
-        "ticker": "GO",
-        "radar_score": 68.75,
-        "stage": "hype_expansion",
-        "z_score": 0.66,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 347\u219272, +500% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 100,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      {
-        "ticker": "EVER",
-        "radar_score": 68.75,
-        "stage": "hype_expansion",
-        "z_score": -0.12,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 531\u219287, +400% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 100,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      {
-        "ticker": "GEV",
-        "radar_score": 68.75,
-        "stage": "hype_expansion",
-        "z_score": 0.52,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 693\u219234, +750% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 100,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 50.0,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      {
-        "ticker": "FM",
+        "ticker": "VC",
         "radar_score": 68.75,
         "stage": "hype_expansion",
         "z_score": 1.18,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 433\u219285, +400% mentions)"
+          "\ud83d\udce3 Reddit (rank 150\u219247, +400% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 100,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      {
+        "ticker": "MA",
+        "radar_score": 68.75,
+        "stage": "hype_expansion",
+        "z_score": 1.68,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 185\u219288, +300% mentions)"
         ],
         "components": {
           "reddit_velocity": 100,
@@ -2459,16 +2479,33 @@
       },
       {
         "ticker": "WAY",
-        "radar_score": 68.65,
+        "radar_score": 68.67,
         "stage": "hype_expansion",
         "z_score": 0.23,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 688\u219282, +500% mentions)"
+          "\ud83d\udce3 Reddit (rank 686\u219278, +500% mentions)"
         ],
         "components": {
           "reddit_velocity": 100,
           "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 49.41,
+          "google_trend_accel": 49.51,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      {
+        "ticker": "GM",
+        "radar_score": 68.66,
+        "stage": "hype_expansion",
+        "z_score": 0.7,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 220\u219290, +300% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 100,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 49.45,
           "relative_volume": 50.0,
           "options_flow": 50.0,
           "insider_activity": 50.0
@@ -2476,50 +2513,16 @@
       },
       {
         "ticker": "PUMP",
-        "radar_score": 68.61,
+        "radar_score": 68.62,
         "stage": "hype_expansion",
         "z_score": -0.04,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 132\u219246, +300% mentions)"
+          "\ud83d\udce3 Reddit (rank 132\u219244, +500% mentions)"
         ],
         "components": {
           "reddit_velocity": 100,
           "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 49.15,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      {
-        "ticker": "VC",
-        "radar_score": 68.49,
-        "stage": "hype_expansion",
-        "z_score": 1.16,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 152\u219249, +400% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 100,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 48.39,
-          "relative_volume": 50.0,
-          "options_flow": 50.0,
-          "insider_activity": 50.0
-        }
-      },
-      {
-        "ticker": "ARR",
-        "radar_score": 67.57,
-        "stage": "hype_expansion",
-        "z_score": 0.78,
-        "active_signals": [
-          "\ud83d\udce3 Reddit (rank 137\u219277, +200% mentions)"
-        ],
-        "components": {
-          "reddit_velocity": 100.0,
-          "stocktwits_sentiment": 50.0,
-          "google_trend_accel": 42.86,
+          "google_trend_accel": 49.17,
           "relative_volume": 50.0,
           "options_flow": 50.0,
           "insider_activity": 50.0
@@ -2527,14 +2530,65 @@
       },
       {
         "ticker": "CRWV",
-        "radar_score": 66.83,
+        "radar_score": 68.2,
         "stage": "hype_expansion",
-        "z_score": 1.55,
+        "z_score": 1.66,
         "active_signals": [
-          "\ud83d\udce3 Reddit (rank 45\u21922, +2506% mentions)"
+          "\ud83d\udce3 Reddit (rank 50\u21922, +2556% mentions)"
         ],
         "components": {
-          "reddit_velocity": 93.0,
+          "reddit_velocity": 98.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      {
+        "ticker": "PTLO",
+        "radar_score": 65.45,
+        "stage": "hype_expansion",
+        "z_score": 1.42,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 96\u219258, +300% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 88.0,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      {
+        "ticker": "GO",
+        "radar_score": 65.32,
+        "stage": "hype_expansion",
+        "z_score": 0.31,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 344\u219280, +150% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 87.5,
+          "stocktwits_sentiment": 50.0,
+          "google_trend_accel": 50.0,
+          "relative_volume": 50.0,
+          "options_flow": 50.0,
+          "insider_activity": 50.0
+        }
+      },
+      {
+        "ticker": "LOVE",
+        "radar_score": 64.77,
+        "stage": "hype_expansion",
+        "z_score": -0.8,
+        "active_signals": [
+          "\ud83d\udce3 Reddit (rank 131\u219283, +150% mentions)"
+        ],
+        "components": {
+          "reddit_velocity": 85.5,
           "stocktwits_sentiment": 50.0,
           "google_trend_accel": 50.0,
           "relative_volume": 50.0,
@@ -2545,68 +2599,63 @@
     ]
   },
   "live_prices": {
-    "XLP": 91.03,
-    "AMC": 3.46,
-    "META": 641.39,
-    "FCF": 21.14,
-    "STX": 501.62,
-    "REGN": 916.06,
-    "GRPN": 12.505,
-    "WDAY": 188.89,
-    "OUT": 32.87,
-    "WDC": 289.2,
-    "WEN": 8.34,
-    "CLOV": 4.93,
-    "ADI": 393.3,
-    "AAPL": 348.51,
-    "USO": 141.45,
-    "AVGO": 331.98,
-    "GDX": 86.49,
-    "NU": 12.08,
-    "TXN": 300.52,
-    "GTLB": 46.66,
-    "GL": 163.46,
-    "XLF": 58.29,
-    "CRDO": 129.8,
-    "TSM": 396.48,
-    "GRND": 13.47,
-    "CART": 58.47,
-    "AMAT": 372.53,
-    "NFLX": 63.26,
-    "DUOL": 156.67,
-    "XLV": 188.88,
-    "ORCL": 117.98,
-    "JPM": 342.07,
-    "NVDA": 168.89,
-    "UBER": 70.05,
-    "MSFT": 533.16,
-    "FOR": 23.1,
-    "EVER": 28.03,
-    "XLK": 168.91,
-    "ARR": 12.39,
-    "LLY": 1432.29,
-    "LRCX": 222.39,
-    "EWZ": 32.15,
-    "INOD": 35.05,
-    "CRM": 213.48,
-    "PLTR": 168.82,
-    "UI": 685.94,
-    "QQQ": 674.76,
-    "KO": 96.91,
-    "EWY": 139.18,
-    "ADBE": 236.7,
-    "IBM": 244.53,
-    "DELL": 334.38,
-    "OR": 36.41,
-    "INTU": 340.44,
-    "XLE": 62.21
+    "QQQ": 685.71,
+    "ADI": 402.43,
+    "JPM": 343.405,
+    "IBM": 244.155,
+    "USO": 143.37,
+    "AMC": 3.411,
+    "PLTR": 171.769,
+    "AMAT": 386.54,
+    "XLK": 173.26,
+    "GRPN": 13.05,
+    "TSM": 410.03,
+    "XLV": 187.325,
+    "FCF": 21.06,
+    "GRND": 13.82,
+    "EWZ": 32.525,
+    "AVGO": 351.36,
+    "AAPL": 353.56,
+    "KO": 96.38,
+    "CRM": 215.15,
+    "OR": 36.23,
+    "GL": 162.5,
+    "NFLX": 63.269,
+    "XLP": 90.605,
+    "CART": 58.43,
+    "OUT": 33.03,
+    "META": 639.54,
+    "INTU": 338.885,
+    "XLE": 62.895,
+    "ARR": 12.316,
+    "ORCL": 124.695,
+    "FOR": 22.99,
+    "DUOL": 158.39,
+    "WEN": 8.305,
+    "XLF": 58.32,
+    "NU": 12.18,
+    "NVDA": 172.88,
+    "EVER": 28.26,
+    "UI": 686.38,
+    "MSFT": 528.13,
+    "UBER": 69.48,
+    "GTLB": 47.41,
+    "CRDO": 139.595,
+    "LRCX": 231.975,
+    "WDAY": 190.04,
+    "LLY": 1418.21,
+    "STX": 540.95,
+    "REGN": 904.99,
+    "CLOV": 4.915,
+    "WDC": 305.66,
+    "INOD": 38.17,
+    "TXN": 308.25,
+    "DELL": 364.295,
+    "GDX": 86.06,
+    "EWY": 146.51,
+    "ADBE": 236.48
   },
   "scheduler": {
-    "2026-11-04": {
-      "close": "2026-11-04T12:30:22.515695-08:00",
-      "midday": "2026-11-04T09:00:28.113587-08:00",
-      "open": "2026-11-04T06:30:23.146056-08:00"
-    },
     "2026-11-05": {
       "close": "2026-11-05T12:30:16.111756-08:00",
       "midday": "2026-11-05T09:00:18.686536-08:00",
@@ -2626,14 +2675,17 @@
       "close": "2026-11-10T12:30:08.803309-08:00",
       "midday": "2026-11-10T09:00:11.831056-08:00",
       "open": "2026-11-10T06:30:19.387434-08:00"
+    },
+    "2026-11-11": {
+      "open": "2026-11-11T06:30:22.072612-08:00"
     }
   },
   "ibkr_online": true,
   "balance": {
     "starting": 10000.0,
-    "net_liq": 15586.43,
+    "net_liq": 15557.05,
     "cash": 2655.3,
-    "positions_value": 12912.33,
+    "positions_value": 12882.95,
     "ibkr_live": true,
     "ibkr_positions": [
       {
